@@ -12,7 +12,7 @@ const Home: NextPage = () => {
                 }}
                 weight="bold"
             >
-                Cookbook
+                Cookbook hehe
             </Text>
         </div>
     );
