@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@ackee/eslint-config": "^4.0.0",
+        "@hookform/devtools": "^4.0.2",
         "@nextui-org/react": "^1.0.2-beta.4",
         "@radix-ui/react-icons": "^1.1.0",
         "eslint-config-prettier": "^8.5.0",
@@ -18,10 +19,11 @@
         "madge": "^5.0.1",
         "next": "12.1.0",
         "next-themes": "^0.1.1",
-        "prettier": "^2.5.1",
+        "prettier": "^2.6.0",
         "prettier-config-ackee": "^0.0.16",
         "react": "17.0.2",
         "react-dom": "17.0.2",
+        "react-hook-form": "^7.28.0",
         "simple-react-footer": "^1.0.2",
         "windicss-webpack-plugin": "^1.6.7"
     },

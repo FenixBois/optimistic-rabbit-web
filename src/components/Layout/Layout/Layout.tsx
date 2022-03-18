@@ -8,7 +8,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
     return (
         <>
-            <main className="min-h-screen">{children}</main>
+            <main className="min-hi-screen">{children}</main>
             <Footer />
         </>
     );
