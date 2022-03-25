@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import { Text } from '@nextui-org/react';
+import { DashboardSearchBarForm } from '../components/Dashboard';
 
 const Home: NextPage = () => {
     return (
@@ -12,8 +13,9 @@ const Home: NextPage = () => {
                 }}
                 weight="bold"
             >
-                Cookbook
+                Cookbook hehe
             </Text>
+            <DashboardSearchBarForm/>
         </div>
     );
 };
