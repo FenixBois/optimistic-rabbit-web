@@ -3729,10 +3729,10 @@ prettier-config-ackee@^0.0.16:
   resolved "https://registry.yarnpkg.com/prettier-config-ackee/-/prettier-config-ackee-0.0.16.tgz#2f1068ced70208134fbcb27ef3becf74e33bc3de"
   integrity sha512-pq6K/LutZHjH+hr2p2A00KvVTNKY0ceC03bTIpxVg6EQ1GrUYjQIHun0ieVOMClKS8rYWkFSWlC+btTW0cBr5Q==
 
-prettier@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.0.tgz#12f8f504c4d8ddb76475f441337542fa799207d4"
-  integrity sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==
+prettier@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.1.tgz#d472797e0d7461605c1609808e27b80c0f9cfe17"
+  integrity sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==
 
 pretty-ms@^7.0.1:
   version "7.0.1"

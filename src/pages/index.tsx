@@ -4,7 +4,7 @@ import { DashboardSearchBarForm } from '../components/Dashboard';
 
 const Home: NextPage = () => {
     return (
-        <div className="flex item-center justify-center">
+        <div className="flex flex-col item-center  justify-center">
             <Text
                 h1
                 size={100}
@@ -15,6 +15,7 @@ const Home: NextPage = () => {
             >
                 Cookbook hehe
             </Text>
+
             <DashboardSearchBarForm/>
         </div>
     );
