@@ -13,7 +13,7 @@ const Home: NextPage = () => {
                 }}
                 weight="bold"
             >
-                Cookbook hehe
+                Cookbook
             </Text>
 
             <DashboardSearchBarForm/>
