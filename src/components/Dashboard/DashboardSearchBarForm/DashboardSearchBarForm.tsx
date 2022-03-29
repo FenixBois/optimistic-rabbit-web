@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { Button, Input } from '@nextui-org/react';
 import { SearchIcon } from 'components/Icons';
+import { Select } from 'components/UI';
 
 export function DashboardSearchBarForm() {
     const { control, handleSubmit, formState, register } = useForm({ mode: 'onChange' });
@@ -9,11 +10,23 @@ export function DashboardSearchBarForm() {
     const onSubmit = (e: any) => {
         console.log(e);
     };
+
+    const selectData = [
+        {
+            value: 'item1',
+            text: 'Item One',
+        },
+        {
+            value: 'item2',
+            text: 'Item Two',
+        },
+    ];
+
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Input
-                    {...register('example')}
+                    {...register('searchText')}
                     clearable
                     contentRightStyling={false}
                     placeholder="Zadejte hledaný výraz"
@@ -23,6 +36,9 @@ export function DashboardSearchBarForm() {
                         </Button>
                     }
                 />
+                <div>
+                    <Select selectData={selectData} />
+                </div>
             </form>
             <DevTool control={control} />
         </>
