@@ -1,22 +1,17 @@
-import { useTheme as useNextTheme } from 'next-themes';
-import { Switch, useTheme } from '@nextui-org/react';
-import { SunIcon, MoonIcon } from 'components/Icons';
+import { StyledFooter } from './Footer.styles';
 
 interface FooterProps {}
 
 export function Footer({}: FooterProps) {
-    const { setTheme } = useNextTheme();
-    const { isDark, type } = useTheme();
-
     return (
-        <footer className="absolute bottom-5 right-5">
-            <Switch
-                size="xl"
-                checked={isDark}
-                iconOn={<SunIcon />}
-                iconOff={<MoonIcon />}
-                onChange={e => setTheme(e.target.checked ? 'dark' : 'light')}
-            />
-        </footer>
+        <StyledFooter>
+            {/*<Switch*/}
+            {/*    size="xl"*/}
+            {/*    checked={isDark}*/}
+            {/*    iconOn={<Icon type={Icon.Types.SUN_ICON} size={'small'} />}*/}
+            {/*    iconOff={<Icon type={Icon.Types.MOON_ICON} size={'small'} />}*/}
+            {/*    onChange={e => setTheme(e.target.checked ? 'dark' : 'light')}*/}
+            {/*/>*/}
+        </StyledFooter>
     );
 }

@@ -1,11 +1,7 @@
 import type { AppProps } from 'next/app';
-
-import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { darkTheme, lightTheme } from 'styles/themes';
+import { darkTheme } from 'styles';
 import { Layout } from 'components/Layout';
-
-import 'windi.css';
 
 function MyApp({ Component }: AppProps) {
     return (
@@ -13,15 +9,13 @@ function MyApp({ Component }: AppProps) {
             defaultTheme="system"
             attribute="class"
             value={{
-                light: lightTheme.className,
+                light: 'light',
                 dark: darkTheme.className,
             }}
         >
-            <NextUIProvider>
-                <Layout>
-                    <Component />
-                </Layout>
-            </NextUIProvider>
+            <Layout>
+                <Component />
+            </Layout>
         </NextThemesProvider>
     );
 }
