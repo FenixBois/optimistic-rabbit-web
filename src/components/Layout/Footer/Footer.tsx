@@ -1,17 +1,12 @@
 import { StyledFooter } from './Footer.styles';
+import { Icon, Switch } from 'components/UI';
 
 interface FooterProps {}
 
 export function Footer({}: FooterProps) {
     return (
         <StyledFooter>
-            {/*<Switch*/}
-            {/*    size="xl"*/}
-            {/*    checked={isDark}*/}
-            {/*    iconOn={<Icon type={Icon.Types.SUN_ICON} size={'small'} />}*/}
-            {/*    iconOff={<Icon type={Icon.Types.MOON_ICON} size={'small'} />}*/}
-            {/*    onChange={e => setTheme(e.target.checked ? 'dark' : 'light')}*/}
-            {/*/>*/}
+            <Switch iconOn={<Icon type={Icon.Types.SUN_ICON} />} iconOff={<Icon type={Icon.Types.MOON_ICON} />} />
         </StyledFooter>
     );
 }

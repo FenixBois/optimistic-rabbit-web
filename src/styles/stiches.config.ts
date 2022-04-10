@@ -10,28 +10,38 @@ export const { styled, css, getCssText, config } = createStitches({
             error: '#db4324',
             success: '#46a758',
 
-            amber1: '#fefdfb', // app background
-            amber3: '#fff4d5', // element background
-            amber4: '#ffecbc', // element hover
-            amber5: '#ffe3a2', // element selected
-            amber7: '#f3ba63', // border
-            amber8: '#ee9d2b', // border hover
-            amber9: '#ffb224', // solid
-            amber10: '#ffa01c', // solid hover
-            amber11: '#ad5700', // low contrast text
-            amber12: '#4e2009', // high contrast text
+            appBackground: '#fefdfb', // app background
+            primaryElementBackground: '#fff4d5', // element background
+            primaryElementHover: '#ffecbc', // element hover
+            primaryElementSelected: '#ffe3a2', // element selected
+            primaryBorder: '#f3ba63', // border
+            primaryBorderHover: '#ee9d2b', // border hover
+            primarySolid: '#ffb224', // solid
+            primarySolidHover: '#ffa01c', // solid hover
+            primaryLowContrastText: '#ad5700', // low contrast text
+            primaryHighContrastText: '#4e2009', // high contrast text
 
-            sand1: '#fdfdfc', // app background
-            sand3: '#f3f3f2', // element background
-            sand4: '#eeeeec', // element hover
-            sand5: '#e9e9e6', // element selected
-            sand7: '#dbdbd7', // border
-            sand8: '#c8c7c1', // border hover
-            sand9: '#90908c', // solid
-            sand10: '#868682', // solid hover
-            sand11: '#706f6c', // low contrast text
-            sand12: '#1b1b18', // high contrast text
+            // sand1: '#fdfdfc', // app background
+            // sand3: '#f3f3f2', // element background
+            greyElementBackground: '#eeeeec', // element hover
+            // sand5: '#e9e9e6', // element selected
+            greyBorder: '#dbdbd7', // border
+            // sand8: '#c8c7c1', // border hover
+            // sand9: '#90908c', // solid
+            // sand10: '#868682', // solid hover
+            lowContrastText: '#706f6c', // low contrast text
+            highContrastText: '#1b1b18', // high contrast text
         },
+        radii: {
+            inputBorderRadius: '0.938rem',
+        },
+        fontWeights: {
+            bold: 700,
+        },
+        fontSizes: {
+            pageTitle: '6rem',
+        },
+
         fonts: {
             poppins: 'Poppins, sans-serif',
         },
@@ -58,8 +68,30 @@ export const { styled, css, getCssText, config } = createStitches({
 
 export const darkTheme = createTheme({
     colors: {
-        amber1: 'black', // app background
-        background: 'black',
+        error: '#db4324',
+        success: '#46a758',
+
+        appBackground: '#fefdfb', // app background
+        primaryElementBackground: '#fff4d5', // element background
+        primaryElementHover: '#ffecbc', // element hover
+        primaryElementSelected: '#ffe3a2', // element selected
+        primaryBorder: '#f3ba63', // border
+        primaryBorderHover: '#ee9d2b', // border hover
+        primarySolid: '#ffb224', // solid
+        primarySolidHover: '#ffa01c', // solid hover
+        primaryLowContrastText: '#ad5700', // low contrast text
+        primaryHighContrastText: '#4e2009', // high contrast text
+
+        // sand1: '#fdfdfc', // app background
+        // sand3: '#f3f3f2', // element background
+        greyElementBackground: '#eeeeec', // element hover
+        // sand5: '#e9e9e6', // element selected
+        greyBorder: '#dbdbd7', // border
+        // sand8: '#c8c7c1', // border hover
+        // sand9: '#90908c', // solid
+        // sand10: '#868682', // solid hover
+        lowContrastText: '#706f6c', // low contrast text
+        highContrastText: '#1b1b18', // high contrast text
     },
 });
 
