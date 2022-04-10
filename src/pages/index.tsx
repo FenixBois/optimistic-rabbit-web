@@ -1,22 +1,13 @@
 import type { NextPage } from 'next';
-import { Text } from '@nextui-org/react';
-import { DashboardSearchBarForm } from '../components/Dashboard';
+import { Switch } from '../components/UI/Switch';
 
 const Home: NextPage = () => {
     return (
-        <div className="flex flex-col item-center  justify-center">
-            <Text
-                h1
-                size={100}
-                css={{
-                    textGradient: '45deg, $purple500 -20%, $pink500 100%',
-                }}
-                weight="bold"
-            >
-                Cookbook
-            </Text>
-
-            <DashboardSearchBarForm/>
+        <div>
+            <h1>AHoooj</h1>
+            <div>
+                <Switch />
+            </div>
         </div>
     );
 };

@@ -1,6 +1,8 @@
-interface SunIconProps {}
+import type { SVGAttributes } from 'react';
 
-export function SunIcon({}: SunIconProps) {
+interface SunIconProps extends SVGAttributes<SVGElement> {}
+
+export function SunIcon(props: SunIconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -10,6 +12,7 @@ export function SunIcon({}: SunIconProps) {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="miter"
+            {...props}
         >
             <circle cx="12" cy="12" r="4" />
             <line x1="12" y1="2" x2="12" y2="4" />
