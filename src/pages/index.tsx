@@ -1,13 +1,10 @@
 import type { NextPage } from 'next';
-import { Switch } from '../components/UI/Switch';
+import { PageTitle } from 'components/Layout';
 
 const Home: NextPage = () => {
     return (
         <div>
-            <h1>AHoooj</h1>
-            <div>
-                <Switch />
-            </div>
+            <PageTitle>Cookbook</PageTitle>
         </div>
     );
 };

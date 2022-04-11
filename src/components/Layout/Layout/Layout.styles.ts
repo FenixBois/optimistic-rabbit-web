@@ -1,6 +1,8 @@
 import { styled } from 'styles';
 
 export const Page = styled('main', {
-    backgroundColor: '$amber1',
+    backgroundColor: '$appBackground',
     minHeight: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
 });
