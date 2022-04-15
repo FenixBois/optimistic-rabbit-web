@@ -1,10 +1,10 @@
 import { styled } from 'styles';
 
 export const ButtonStyled = styled('button', {
-    borderRadius: '20px',
+    borderRadius: '$inputBorderRadius',
     fontSize: '13px',
-    border: '0',
-
+    border: '',
+    padding: 10,
     variants: {
         type: {
             primary: {
