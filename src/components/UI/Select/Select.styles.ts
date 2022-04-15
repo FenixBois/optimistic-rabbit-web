@@ -2,25 +2,24 @@ import { styled } from 'styles';
 import * as SelectRadix from '@radix-ui/react-Select';
 
 export const SelectTrigger = styled(SelectRadix.Trigger, {
-    all: 'unset',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 4,
-    padding: '0 15px',
-    fontSize: 13,
-    lineHeight: 1,
-    height: 35,
-    gap: 5,
-    backgroundColor: 'white',
+
+    backgroundColor: '$primaryElementBackground',
+    borderRadius: '$inputBorderRadius',
+    border: 'none',
+    px: 15,
+    height: 46,
+
     '&:focus': { boxShadow: `0 0 0 2px black` },
 });
 
 export const SelectContent = styled(SelectRadix.Content, {
     overflow: 'hidden',
-    backgroundColor: 'white',
-    borderRadius: 6,
-    boxShadow: '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
+    backgroundColor: '$primaryElementBackground',
+    borderRadius: '$inputBorderRadius',
+    boxShadow: '$dropdown',
 });
 
 export const StyledViewport = styled(SelectRadix.Viewport, {
@@ -28,7 +27,6 @@ export const StyledViewport = styled(SelectRadix.Viewport, {
 });
 
 export const StyledSelectItem = styled(SelectRadix.Item, {
-    all: 'unset',
     fontSize: 13,
     lineHeight: 1,
     borderRadius: 3,

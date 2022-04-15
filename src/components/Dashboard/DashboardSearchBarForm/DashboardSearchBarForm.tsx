@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
-import { Icon, Select, SelectItem } from 'components/UI';
+import { Button, Select } from 'components/UI';
 
 export function DashboardSearchBarForm() {
     const { control, handleSubmit, register, setValue } = useForm({ mode: 'onChange' });
@@ -31,14 +31,8 @@ export function DashboardSearchBarForm() {
                         {...register('selected')}
                         defaultValue={options[0].description}
                         onValueChange={value => setValue('selected', value)}
-                    >
-                        {options.map(option => (
-                            <SelectItem key={option.id} value={option.description}>
-                                {option.description}
-                            </SelectItem>
-                        ))}
-                    </Select>
-                    <Icon size="large" type={Icon.Types.MOON_ICON} />
+                    ></Select>
+                    <Button type={'primary'}>ASDASDASD</Button>
                 </div>
             </form>
             <DevTool control={control} />

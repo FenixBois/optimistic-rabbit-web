@@ -8,7 +8,7 @@ export const ButtonStyled = styled('button', {
     variants: {
         type: {
             primary: {
-                backgroundColor: '$amber9',
+                backgroundColor: '$primarySolid',
             },
             secondary: {
                 backgroundColor: '$amber3',

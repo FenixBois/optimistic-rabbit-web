@@ -34,6 +34,7 @@ export const { styled, css, getCssText, config } = createStitches({
         },
         radii: {
             inputBorderRadius: '0.938rem',
+            buttonBorderRadius: '0.938rem',
         },
         fontWeights: {
             bold: 700,
@@ -44,6 +45,10 @@ export const { styled, css, getCssText, config } = createStitches({
 
         fonts: {
             poppins: 'Poppins, sans-serif',
+        },
+
+        boxShadows: {
+            dropdown: '0px 0px 15px rgba(0, 0, 0, 0.05)',
         },
     },
     utils: {

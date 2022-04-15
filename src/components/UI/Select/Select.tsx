@@ -1,49 +1,46 @@
-import * as SelectRadix from '@radix-ui/react-Select';
+import { Listbox, ListboxOption, ListboxPopover } from '@reach/listbox';
+import { styled } from '../../../styles';
+import { useState } from 'react';
 
-import type { ReactNode } from 'react';
-import { forwardRef } from 'react';
-import { SelectContent, SelectTrigger, StyledSelectItem, StyledViewport } from './Select.styles';
+import '@reach/listbox/styles.css';
+import { Icon } from '../Icon';
 
-export interface SelectTypesProps {
-    children: ReactNode;
-    defaultValue: string;
-    onValueChange: (value: string) => void;
-}
-
-export interface SelectItemTypesProps {
-    children: ReactNode;
-    value: string;
-}
-
-type SelectItemRef = HTMLDivElement;
-type SelectRef = HTMLSelectElement;
-
-export const Select = forwardRef<SelectRef, SelectTypesProps>(
-    ({ children, defaultValue, onValueChange, ...props }, ref) => {
-        return (
-            <SelectRadix.Root onValueChange={onValueChange} defaultValue={defaultValue} {...props}>
-                <SelectTrigger>
-                    <SelectRadix.Value />
-                </SelectTrigger>
-
-                <SelectContent>
-                    <StyledViewport>{children}</StyledViewport>
-                </SelectContent>
-            </SelectRadix.Root>
-        );
+export const StyledListbox = styled(Listbox, {
+    '& [data-reach-listbox-button]': {
+        width: '100%',
+        height: 46,
+        border: 'none',
+        backgroundColor: '$primaryElementBackground',
+        borderRadius: '$inputBorderRadius',
     },
-);
+});
 
-Select.displayName = 'Select';
+export const StyledListboxItem = styled(ListboxOption, {
+    borderRadius: '$inputBorderRadius',
+    border: 'none',
+});
 
-export const SelectItem = forwardRef<SelectItemRef, SelectItemTypesProps>(
-    ({ children, value, ...props }, forwardedRef) => {
-        return (
-            <StyledSelectItem value={value} {...props} ref={forwardedRef}>
-                <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
-            </StyledSelectItem>
-        );
-    },
-);
+export const StyledListboxPopover = styled(ListboxPopover, {
+    backgroundColor: '$primaryElementBackground',
+    borderRadius: '$inputBorderRadius',
+    padding: 0,
+    border: 'none',
+    width: '100%',
+});
 
-SelectItem.displayName = 'SelectItem';
+export const Select = () => {
+    let [value, setValue] = useState('default');
+    return (
+        <>
+            <StyledListbox
+                arrow={<Icon type={Icon.Types.MOON_ICON} />}
+                value={value}
+                onChange={value => setValue(value)}
+            >
+                <StyledListboxItem value="default">🌮 Choose a taco</StyledListboxItem>
+                <StyledListboxItem value="asada">🌮 Carne Asada</StyledListboxItem>
+                <StyledListboxItem value="pollo">🌮 Pollo</StyledListboxItem>
+            </StyledListbox>
+        </>
+    );
+};
