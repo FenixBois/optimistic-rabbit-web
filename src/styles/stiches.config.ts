@@ -36,10 +36,12 @@ export const { styled, css, getCssText, config } = createStitches({
             inputBorderRadius: '0.938rem',
         },
         fontWeights: {
+            semibold: 600,
             bold: 700,
         },
         fontSizes: {
             pageTitle: '6rem',
+            buttonText: '1rem',
         },
 
         fonts: {
