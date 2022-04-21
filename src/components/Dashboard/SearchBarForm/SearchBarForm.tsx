@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
-import { Icon, Select, SelectItem, Button } from 'components/UI';
+import { Button, Icon, Select, SelectItem } from 'components/UI';
 
-export function DashboardSearchBarForm() {
+export function SearchBarForm() {
     const { control, handleSubmit, register, setValue } = useForm({ mode: 'onChange' });
 
     const options = [
@@ -39,8 +39,9 @@ export function DashboardSearchBarForm() {
                             </SelectItem>
                         ))}
                     </Select>
+
                     <Icon size="large" type={Icon.Types.MOON_ICON} />
-                    <Button children={'Add recipe'}></Button>
+                    <Button>Add recepie</Button>
                 </div>
             </form>
             <DevTool control={control} />

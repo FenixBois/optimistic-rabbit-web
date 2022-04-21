@@ -1,2 +1,2 @@
-export * from './DashboardSearchBarForm';
+export * from './SearchBarForm';
 export * from './DashboardCreateRecipeForm';
