@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
-import { Button, Icon, Select, SelectItem } from 'components/UI';
+import { Button, Input, Select, SelectItem } from 'components/UI';
+import { RecipeCard } from 'components/Recipes/RecipeCard';
+import React from 'react';
 
 export function SearchBarForm() {
-    const { control, handleSubmit, register, setValue } = useForm({ mode: 'onChange' });
+    const { control, handleSubmit, register, setValue } = useForm<{ bartok: string }>({ mode: 'onChange' });
 
     const options = [
         {
@@ -29,9 +31,9 @@ export function SearchBarForm() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <Select
-                        {...register('selected')}
-                        defaultValue={options[0].description}
-                        onValueChange={value => setValue('selected', value)}
+                        type={'secondary'}
+                        {...register('bartok')}
+                        onChange={(value: string) => setValue('bartok', value)}
                     >
                         {options.map(option => (
                             <SelectItem key={option.id} value={option.description}>
@@ -39,12 +41,22 @@ export function SearchBarForm() {
                             </SelectItem>
                         ))}
                     </Select>
+                    {/*<Select type={'primary'} onChange={(value: string) => setValue('bartok', value)}>*/}
+                    {/*    {options.map(option => (*/}
+                    {/*        <SelectItem key={option.id} value={option.description}>*/}
+                    {/*            {option.description}*/}
+                    {/*        </SelectItem>*/}
+                    {/*    ))}*/}
+                    {/*</Select>*/}
+                    <Input register={register} name={'bartok'} />
 
-                    <Icon size="large" type={Icon.Types.MOON_ICON} />
-                    <Button>Add recepie</Button>
+                    {/*<Input type={'primary'} suffix={<Icon size={'medium'} type={Icon.Types.SEARCH_ICON} />} />*/}
+                    <Button>Add recipe</Button>
                 </div>
             </form>
             <DevTool control={control} />
+
+            <RecipeCard />
         </>
     );
 }

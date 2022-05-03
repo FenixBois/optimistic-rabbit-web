@@ -36,12 +36,17 @@ export const { styled, css, getCssText, config } = createStitches({
             inputBorderRadius: '0.938rem',
         },
         fontWeights: {
+            regular: 400,
             semibold: 600,
             bold: 700,
         },
         fontSizes: {
+            md: '1rem',
+            l: '1.14rem',
+            xl: '1.7rem',
+            xxl: '2.28rem',
             pageTitle: '6rem',
-            buttonText: '1rem',
+            buttonText: '1.14rem',
         },
 
         fonts: {
@@ -98,7 +103,8 @@ export const darkTheme = createTheme({
 });
 
 const GlobalStyles = globalCss({
-    '*': { margin: 0, padding: 0 },
+    '*': { margin: 0, padding: 0, fontFamily: '$poppins' },
+    html: { fontSize: 14 },
 });
 
 GlobalStyles();

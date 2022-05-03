@@ -1,1 +1,1 @@
-export * from './DashboardSearchBarForm';
+export * from './SearchBarForm';

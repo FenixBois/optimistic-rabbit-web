@@ -3,7 +3,6 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { darkTheme } from 'styles';
 import { Layout } from 'components/Layout';
 
-import 'normalize.css';
 import '../styles/global.css';
 
 function MyApp({ Component }: AppProps) {

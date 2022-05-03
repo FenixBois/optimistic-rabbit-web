@@ -1,49 +1,91 @@
-import * as SelectRadix from '@radix-ui/react-Select';
-
 import type { ReactNode } from 'react';
-import { forwardRef } from 'react';
-import { SelectContent, SelectTrigger, StyledSelectItem, StyledViewport } from './Select.styles';
+import { useState } from 'react';
+import { Icon } from '../Icon';
 
-export interface SelectTypesProps {
+import { AnimatePresence, motion } from 'framer-motion';
+
+import { ListboxButtonStyled, ListboxListStyled, SelectBody, SelectInput, SelectItemStyled } from './Select.styles';
+import { VariantProps } from '@stitches/react';
+
+interface SelectTypeProps extends VariantProps<typeof SelectInput> {
     children: ReactNode;
-    defaultValue: string;
-    onValueChange: (value: string) => void;
+    onChange: (value: string) => void;
 }
 
-export interface SelectItemTypesProps {
+interface SelectItemTypeProps {
+    value: string | 'default';
     children: ReactNode;
-    value: string;
 }
 
-type SelectItemRef = HTMLDivElement;
-type SelectRef = HTMLSelectElement;
+export const Select = ({ children, type, onChange }: SelectTypeProps) => {
+    const [value, setValue] = useState<string | null>(null);
 
-export const Select = forwardRef<SelectRef, SelectTypesProps>(
-    ({ children, defaultValue, onValueChange, ...props }, ref) => {
-        return (
-            <SelectRadix.Root onValueChange={onValueChange} defaultValue={defaultValue} {...props}>
-                <SelectTrigger>
-                    <SelectRadix.Value />
-                </SelectTrigger>
+    const subMenuAnimate = {
+        enter: {
+            opacity: 1,
 
-                <SelectContent>
-                    <StyledViewport>{children}</StyledViewport>
-                </SelectContent>
-            </SelectRadix.Root>
-        );
-    },
-);
+            transition: {
+                duration: 0.2,
+            },
+            display: 'block',
+        },
+        exit: {
+            opacity: 0,
 
-Select.displayName = 'Select';
+            transitionEnd: {
+                duration: 0.2,
 
-export const SelectItem = forwardRef<SelectItemRef, SelectItemTypesProps>(
-    ({ children, value, ...props }, forwardedRef) => {
-        return (
-            <StyledSelectItem value={value} {...props} ref={forwardedRef}>
-                <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
-            </StyledSelectItem>
-        );
-    },
-);
+                display: 'none',
+            },
+        },
+    };
 
-SelectItem.displayName = 'SelectItem';
+    const SelectBodyAnimated = motion(SelectBody);
+
+    const handleChange = (value: string) => {
+        setValue(value);
+        onChange(value);
+    };
+
+    return (
+        <SelectInput type={type} value={value ?? 'default'} onChange={handleChange}>
+            {({ valueLabel, isExpanded }) => (
+                <>
+                    <ListboxButtonStyled
+                        arrow={
+                            isExpanded ? (
+                                <Icon
+                                    label={'close menu'}
+                                    size={type === 'primary' ? 'large' : 'medium'}
+                                    type={Icon.Types.ARROW_UP}
+                                />
+                            ) : (
+                                <Icon
+                                    label={'open menu'}
+                                    size={type === 'primary' ? 'large' : 'medium'}
+                                    type={Icon.Types.ARROW_DOWN}
+                                />
+                            )
+                        }
+                    >
+                        {value ? valueLabel : 'Difficulty'}
+                    </ListboxButtonStyled>
+                    <AnimatePresence exitBeforeEnter={false} initial={false} onExitComplete={() => null}>
+                        <SelectBodyAnimated
+                            initial="exit"
+                            type={type}
+                            animate={isExpanded ? 'enter' : 'exit'}
+                            variants={subMenuAnimate}
+                        >
+                            <ListboxListStyled>{children}</ListboxListStyled>
+                        </SelectBodyAnimated>
+                    </AnimatePresence>
+                </>
+            )}
+        </SelectInput>
+    );
+};
+
+export const SelectItem = ({ children, value }: SelectItemTypeProps) => {
+    return <SelectItemStyled value={value}>{children}</SelectItemStyled>;
+};

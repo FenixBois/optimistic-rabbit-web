@@ -1,60 +1,96 @@
 import { styled } from 'styles';
-import * as SelectRadix from '@radix-ui/react-Select';
+import { ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover } from '@reach/listbox';
 
-export const SelectTrigger = styled(SelectRadix.Trigger, {
-    all: 'unset',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 15,
-    py: 8,
-    px: 30,
-    lineHeight: 1,
-    height: 35,
-    gap: 5,
-
-    fontSize: '$buttonText',
-    fontWeight: '$semibold',
-
-    backgroundColor: '$primaryElementBackground',
-    color: '$primaryLowContrastText',
-    // '&:focus': { boxShadow: `0 0 0 2px black` },
-});
-
-export const SelectContent = styled(SelectRadix.Content, {
-    overflow: 'hidden',
-    backgroundColor: 'white',
-    borderRadius: 8,
-    boxShadow: '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
-});
-
-export const StyledViewport = styled(SelectRadix.Viewport, {
-    padding: 5,
-});
-
-export const StyledSelectItem = styled(SelectRadix.Item, {
-    all: 'unset',
-    lineHeight: 1,
-    borderRadius: 3,
+export const SelectInput = styled(ListboxInput, {
     display: 'flex',
-    alignItems: 'center',
-    height: 25,
-    py: 8,
-    px: 30,
-    position: 'relative',
-    userSelect: 'none',
 
-    fontSize: '$buttonText',
-    fontWeight: '$semibold',
+    ':focus-visible': {
+        outlineColor: '$primaryHighContrastText',
+    },
+    variants: {
+        type: {
+            primary: {
+                '& [data-reach-listbox-button]': {
+                    backgroundColor: '$primaryElementBackground',
+                    color: '$primaryLowContrastText',
+                    fontWeight: '$semibold',
 
-    backgroundColor: '$primaryElementBackground',
-    color: '$primaryLowContrastText',
+                    py: 11,
+                    px: 15,
 
-    '&[data-disabled]': {
-        pointerEvents: 'none',
+                    borderRadius: 15,
+                },
+            },
+            secondary: {
+                '& [data-reach-listbox-button]': {
+                    backgroundColor: '$greyElementBackground',
+                    color: '$highContrastText',
+                    fontWeight: '$regular',
+
+                    py: 5,
+                    px: 10,
+
+                    borderRadius: 7,
+                },
+            },
+        },
     },
 
-    '&:focus': {
-        color: '$highContrastText',
+    '& [data-reach-listbox-button]': {
+        display: 'flex',
+
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 10,
+        border: 'none',
+        height: '100%',
+        fontSize: '$buttonText',
+
+        width: 'auto',
+
+        backgroundColor: '$primaryElementBackground',
+        color: '$primaryHighContrastText',
     },
+});
+
+export const SelectBody = styled(ListboxPopover, {
+    marginTop: 5,
+    borderRadius: 15,
+    minWidth: 'fit-content',
+
+    ':focus-visible': {
+        outline: 'none',
+    },
+
+    variants: {
+        type: {
+            primary: {
+                backgroundColor: '$primaryElementBackground',
+                color: '$primaryLowContrastText',
+                fontWeight: '$semibold',
+
+                '& [data-reach-listbox-option]': {
+                    px: 15,
+                    py: 15,
+                },
+            },
+            secondary: {
+                backgroundColor: '$greyElementBackground',
+                color: '$highContrastText',
+                '& [data-reach-listbox-option]': {
+                    px: 10,
+                    py: 10,
+                },
+            },
+        },
+    },
+});
+
+export const ListboxListStyled = styled(ListboxList, {});
+
+export const ListboxButtonStyled = styled(ListboxButton, {});
+
+export const SelectItemStyled = styled(ListboxOption, {
+    listStyleType: 'none',
+    cursor: 'pointer',
 });
