@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { ButtonStyled } from './Button.styles';
 import type { VariantProps } from 'styles';
+import { ButtonStyled } from './Button.styles';
 
 export interface ButtonProps extends VariantProps<typeof ButtonStyled> {
     children: ReactNode;
