@@ -3,6 +3,7 @@ import { ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover
 
 export const SelectInput = styled(ListboxInput, {
     display: 'flex',
+    height: "100%",
 
     ':focus-visible': {
         outlineColor: '$primaryHighContrastText',
