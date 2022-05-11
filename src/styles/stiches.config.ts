@@ -1,10 +1,15 @@
 import type * as Stitches from '@stitches/react';
-import { createStitches, createTheme, globalCss } from '@stitches/react';
+import {createStitches, createTheme, globalCss} from '@stitches/react';
 
-export type { VariantProps } from '@stitches/react';
+export type {VariantProps} from '@stitches/react';
 export type CSS = Stitches.CSS<typeof config>;
 
-export const { styled, css, getCssText, config } = createStitches({
+export const {styled, css, getCssText, config} = createStitches({
+    media: {
+        sm: '(min-width: 640px)',
+        md: '(min-width: 768px)',
+        lg: '(min-width: 1024px)',
+    },
     theme: {
         colors: {
             error: '#db4324',
@@ -48,7 +53,6 @@ export const { styled, css, getCssText, config } = createStitches({
             pageTitle: '6rem',
             buttonText: '1.14rem',
         },
-
         fonts: {
             poppins: 'Poppins, sans-serif',
         },
@@ -103,8 +107,8 @@ export const darkTheme = createTheme({
 });
 
 const GlobalStyles = globalCss({
-    '*': { margin: 0, padding: 0, fontFamily: '$poppins' },
-    html: { fontSize: 14 },
+    '*': {margin: 0, padding: 0, fontFamily: '$poppins'},
+    html: {fontSize: 14},
 });
 
 GlobalStyles();

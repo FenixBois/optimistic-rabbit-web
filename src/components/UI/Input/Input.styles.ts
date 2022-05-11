@@ -1,4 +1,4 @@
-import { styled } from 'styles';
+import {styled} from 'styles';
 
 export const InputWrapper = styled('div', {
     display: 'inline-flex',
@@ -30,6 +30,14 @@ export const InputWrapper = styled('div', {
                 px: 12,
                 py: 6,
             },
+            landing: {
+                borderRadius: 15,
+                backgroundColor: '$primaryElementBackground',
+                color: '$primaryLowContrastText',
+
+                px: 30,
+                py: 15,
+            }
         },
     },
     defaultVariants: {
