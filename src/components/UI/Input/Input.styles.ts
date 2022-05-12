@@ -1,10 +1,11 @@
-import {styled} from 'styles';
+import { styled } from 'styles';
 
 export const InputWrapper = styled('div', {
     display: 'inline-flex',
     position: 'relative',
     boxSizing: 'border-box',
     alignItems: 'center',
+    flexGrow: 1,
 
     border: 'none',
 
@@ -19,7 +20,7 @@ export const InputWrapper = styled('div', {
                 borderRadius: 15,
                 backgroundColor: '$primaryElementBackground',
                 color: '$primaryLowContrastText',
-
+                height: '$largeInput',
                 px: 30,
                 py: 15,
 
@@ -28,11 +29,12 @@ export const InputWrapper = styled('div', {
                 },
                 '&:focus-within': {
                     backgroundColor: '$primaryElementSelected',
-                }
+                },
             },
             secondary: {
                 backgroundColor: '$greyElementBackground',
                 borderRadius: 10,
+                height: '$input',
 
                 px: 12,
                 py: 6,

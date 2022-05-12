@@ -6,6 +6,10 @@ export interface ButtonProps extends VariantProps<typeof ButtonStyled> {
     children: ReactNode;
 }
 
-export const Button = ({ children, type }: ButtonProps) => {
-    return <ButtonStyled type={type}>{children}</ButtonStyled>;
+export const Button = ({ children, type, size }: ButtonProps) => {
+    return (
+        <ButtonStyled type={type} size={size}>
+            <span>{children}</span>
+        </ButtonStyled>
+    );
 };

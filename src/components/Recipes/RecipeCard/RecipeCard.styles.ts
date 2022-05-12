@@ -1,4 +1,4 @@
-import {styled} from 'styles';
+import { styled } from 'styles';
 
 export const ContainerStyled = styled('div', {
     width: '100%',
@@ -11,13 +11,9 @@ export const ContainerStyled = styled('div', {
     py: 15,
 
     '&:hover': {
-        // TODO: Pointer when hovering Typography
-        '[& `${Typography}`]': {
-            cursor: 'pointer',
-        },
-
+        cursor: 'pointer',
         border: 'solid 4px $greyBorderHover',
-    }
+    },
 });
 
 export const PillContainerStyled = styled('div', {

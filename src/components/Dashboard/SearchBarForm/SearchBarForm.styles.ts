@@ -1,23 +1,20 @@
-import {styled} from 'styles';
+import { styled } from 'styles';
 
-export const MainInputStyled = styled('div', {
+export const SearchInputBox = styled('div', {
     display: 'flex',
-    flexDirection: 'row',
-    '& > *:first-child': { // Allows input to fill the remaining space
-        flexGrow: 1,
-        marginRight: '20px',
-    },
-})
+    alignItems: 'center',
+    gap: 25,
+});
 
 export const SearchBarFormStyled = styled('form', {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
     width: '100%',
-})
+});
 
 export const SelectContainerStyled = styled('div', {
     display: 'flex',
-    flexDirection: 'row',
-    marginTop: '10px',
-    '& > *': {
-        marginRight: '10px',
-    }
-})
+    marginTop: 10,
+    gap: 10,
+});

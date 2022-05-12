@@ -16,12 +16,6 @@ export interface InputProps<TFormItem> extends VariantProps<typeof InputWrapper>
     name: Path<TFormItem>;
 }
 
-// export const FancyButton = React.forwardRef<Ref, Props>((props, ref) => (
-//     <button ref={ref} className="MyClassName" type={props.type}>
-//         {props.children}
-//     </button>
-// ));
-
 export function Input<TFormItem>({
     suffix,
     prefix,

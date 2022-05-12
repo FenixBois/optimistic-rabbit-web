@@ -1,9 +1,9 @@
-import {styled} from 'styles';
-import {ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover} from '@reach/listbox';
+import { styled } from 'styles';
+import { ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover } from '@reach/listbox';
 
 export const SelectInput = styled(ListboxInput, {
     display: 'flex',
-    height: "100%",
+    height: '100%',
 
     '& [data-reach-listbox-button]': {
         display: 'flex',
@@ -36,8 +36,6 @@ export const SelectInput = styled(ListboxInput, {
                     '&:hover': {
                         backgroundColor: '$primaryElementHover',
                     },
-
-                    // TODO: Add active styles for primary version
                 },
             },
             secondary: {
@@ -54,8 +52,6 @@ export const SelectInput = styled(ListboxInput, {
                     '&:hover': {
                         backgroundColor: '$greyElementHover',
                     },
-
-                    // TODO: Add active styles for secondary version
                 },
             },
         },
@@ -113,10 +109,10 @@ export const SelectItemStyled = styled(ListboxOption, {
                 '&:hover': {
                     backgroundColor: '$primaryElementHover',
                 },
-            }
-        }
+            },
+        },
     },
     defaultVariants: {
         type: 'primary',
-    }
+    },
 });

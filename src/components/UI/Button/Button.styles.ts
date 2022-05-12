@@ -2,9 +2,12 @@ import { styled } from 'styles';
 
 export const ButtonStyled = styled('button', {
     borderRadius: 15,
-    border: 0,
+    border: 'none',
     py: 18,
     px: 20,
+
+    display: 'flex',
+    alignItems: 'center',
 
     fontSize: '$buttonText',
     fontWeight: '$semibold',
@@ -19,13 +22,19 @@ export const ButtonStyled = styled('button', {
                     cursor: 'pointer',
                 },
             },
-            secondary: {
-                // TBA
+        },
+        size: {
+            normal: {
+                height: '$input',
+            },
+            large: {
+                height: '$largeInput',
             },
         },
     },
 
     defaultVariants: {
         type: 'primary',
+        size: 'normal',
     },
 });

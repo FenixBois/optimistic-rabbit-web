@@ -1,10 +1,10 @@
 import type * as Stitches from '@stitches/react';
-import {createStitches, createTheme, globalCss} from '@stitches/react';
+import { createStitches, createTheme, globalCss } from '@stitches/react';
 
-export type {VariantProps} from '@stitches/react';
-export type CSS = Stitches.CSS<typeof config>;
+export type { VariantProps } from '@stitches/react';
+export type { PropertyValue } from '@stitches/react';
 
-export const {styled, css, getCssText, config} = createStitches({
+export const { styled, css, getCssText, config } = createStitches({
     media: {
         sm: '(min-width: 640px)',
         md: '(min-width: 768px)',
@@ -36,6 +36,10 @@ export const {styled, css, getCssText, config} = createStitches({
             // sand10: '#868682', // solid hover
             lowContrastText: '#706f6c', // low contrast text
             highContrastText: '#1b1b18', // high contrast text
+        },
+        sizes: {
+            input: '32px',
+            largeInput: '52px',
         },
         radii: {
             inputBorderRadius: '0.938rem',
@@ -107,8 +111,8 @@ export const darkTheme = createTheme({
 });
 
 const GlobalStyles = globalCss({
-    '*': {margin: 0, padding: 0, fontFamily: '$poppins'},
-    html: {fontSize: 14},
+    '*': { margin: 0, padding: 0, fontFamily: '$poppins' },
+    html: { fontSize: 14 },
 });
 
 GlobalStyles();
