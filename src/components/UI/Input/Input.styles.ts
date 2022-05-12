@@ -22,6 +22,13 @@ export const InputWrapper = styled('div', {
 
                 px: 30,
                 py: 15,
+
+                '&:hover': {
+                    backgroundColor: '$primaryElementHover',
+                },
+                '&:focus-within': {
+                    backgroundColor: '$primaryElementSelected',
+                }
             },
             secondary: {
                 backgroundColor: '$greyElementBackground',
@@ -30,14 +37,6 @@ export const InputWrapper = styled('div', {
                 px: 12,
                 py: 6,
             },
-            landing: {
-                borderRadius: 15,
-                backgroundColor: '$primaryElementBackground',
-                color: '$primaryLowContrastText',
-
-                px: 30,
-                py: 15,
-            }
         },
     },
     defaultVariants: {

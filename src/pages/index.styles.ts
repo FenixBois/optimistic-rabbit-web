@@ -5,9 +5,10 @@ export const PageContainerStyled = styled('div', {
     flexDirection: 'column',
     alignItems: 'center',
 
-    '& > *:first-child': {
-        marginBottom: 50,
-    },
+    // TODO: Add margin to the bottom of the title
+    // [`& ${PageTitle}`]: {
+    //     marginBottom: 50,
+    // },
 
     '@sm': {
         width: '100%',

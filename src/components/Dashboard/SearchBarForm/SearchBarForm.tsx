@@ -29,7 +29,7 @@ export function SearchBarForm() {
                 {/*</Select>*/}
                 {/*<Input type={'primary'} suffix={<Icon size={'medium'} type={Icon.Types.SEARCH_ICON} />} />*/}
                 <MainInputStyled>
-                    <Input register={register} name={'bartok'} type={'landing'}/>
+                    <Input register={register} name={'bartok'} type={'primary'}/>
                     <Button>Add recipe</Button>
                 </MainInputStyled>
                 <SelectContainerStyled>

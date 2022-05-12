@@ -27,11 +27,11 @@ export const {styled, css, getCssText, config} = createStitches({
             primaryHighContrastText: '#4e2009', // high contrast text
 
             // sand1: '#fdfdfc', // app background
-            // sand3: '#f3f3f2', // element background
-            greyElementBackground: '#eeeeec', // element hover
+            greyElementBackground: '#f3f3f2', // element hover
+            greyElementHover: '#eeeeec', // element hover
             // sand5: '#e9e9e6', // element selected
             greyBorder: '#dbdbd7', // border
-            // sand8: '#c8c7c1', // border hover
+            greyBorderHover: '#c8c7c1', // border hover
             // sand9: '#90908c', // solid
             // sand10: '#868682', // solid hover
             lowContrastText: '#706f6c', // low contrast text

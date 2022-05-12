@@ -9,6 +9,15 @@ export const ContainerStyled = styled('div', {
 
     px: 20,
     py: 15,
+
+    '&:hover': {
+        // TODO: Pointer when hovering Typography
+        '[& `${Typography}`]': {
+            cursor: 'pointer',
+        },
+
+        border: 'solid 4px $greyBorderHover',
+    }
 });
 
 export const PillContainerStyled = styled('div', {

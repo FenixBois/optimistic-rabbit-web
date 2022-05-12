@@ -1,13 +1,25 @@
-import { styled } from 'styles';
-import { ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover } from '@reach/listbox';
+import {styled} from 'styles';
+import {ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover} from '@reach/listbox';
 
 export const SelectInput = styled(ListboxInput, {
     display: 'flex',
     height: "100%",
 
+    '& [data-reach-listbox-button]': {
+        display: 'flex',
+        width: 'auto',
+
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 10,
+        border: 'none',
+        height: '100%',
+        fontSize: '$buttonText',
+    },
     ':focus-visible': {
         outlineColor: '$primaryHighContrastText',
     },
+
     variants: {
         type: {
             primary: {
@@ -20,6 +32,12 @@ export const SelectInput = styled(ListboxInput, {
                     px: 15,
 
                     borderRadius: 15,
+
+                    '&:hover': {
+                        backgroundColor: '$primaryElementHover',
+                    },
+
+                    // TODO: Add active styles for primary version
                 },
             },
             secondary: {
@@ -32,25 +50,18 @@ export const SelectInput = styled(ListboxInput, {
                     px: 10,
 
                     borderRadius: 7,
+
+                    '&:hover': {
+                        backgroundColor: '$greyElementHover',
+                    },
+
+                    // TODO: Add active styles for secondary version
                 },
             },
         },
     },
-
-    '& [data-reach-listbox-button]': {
-        display: 'flex',
-
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 10,
-        border: 'none',
-        height: '100%',
-        fontSize: '$buttonText',
-
-        width: 'auto',
-
-        backgroundColor: '$primaryElementBackground',
-        color: '$primaryHighContrastText',
+    defaultVariants: {
+        type: 'primary',
     },
 });
 
@@ -94,4 +105,18 @@ export const ListboxButtonStyled = styled(ListboxButton, {});
 export const SelectItemStyled = styled(ListboxOption, {
     listStyleType: 'none',
     cursor: 'pointer',
+    borderRadius: 15,
+
+    variants: {
+        type: {
+            primary: {
+                '&:hover': {
+                    backgroundColor: '$primaryElementHover',
+                },
+            }
+        }
+    },
+    defaultVariants: {
+        type: 'primary',
+    }
 });
