@@ -2,12 +2,13 @@ import { styled } from 'styles';
 
 export const IconButtonStyled = styled('button', {
     borderRadius: 15,
+    cursor: 'pointer',
     border: 0,
     py: 10,
     px: 10,
 
     variants: {
-        type: {
+        color: {
             primary: {
                 backgroundColor: '$primarySolid',
                 color: '$primaryHighContrastText',
@@ -17,12 +18,14 @@ export const IconButtonStyled = styled('button', {
                 },
             },
             secondary: {
-                // TBA
+                backgroundColor: '$greyElementBackground',
+                color: '$highContrastText',
+                cursor: 'pointer',
             },
         },
     },
 
     defaultVariants: {
-        type: 'primary',
+        color: 'primary',
     },
 });
