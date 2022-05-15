@@ -1,5 +1,5 @@
-import { styled } from 'styles';
-import { ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover } from '@reach/listbox';
+import {styled} from 'styles';
+import {ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover} from '@reach/listbox';
 
 export const SelectInput = styled(ListboxInput, {
     display: 'flex',
@@ -43,6 +43,7 @@ export const SelectInput = styled(ListboxInput, {
                     backgroundColor: '$greyElementBackground',
                     color: '$highContrastText',
                     fontWeight: '$regular',
+                    fontSize: '$md',
 
                     py: 5,
                     px: 10,
@@ -85,12 +86,16 @@ export const SelectBody = styled(ListboxPopover, {
             secondary: {
                 backgroundColor: '$greyElementBackground',
                 color: '$highContrastText',
+
                 '& [data-reach-listbox-option]': {
                     px: 10,
                     py: 10,
                 },
             },
         },
+    },
+    defaultVariants: {
+        type: 'primary',
     },
 });
 
@@ -108,6 +113,11 @@ export const SelectItemStyled = styled(ListboxOption, {
             primary: {
                 '&:hover': {
                     backgroundColor: '$primaryElementHover',
+                },
+            },
+            secondary: {
+                '&:hover': {
+                    backgroundColor: '$greyElementHover',
                 },
             },
         },

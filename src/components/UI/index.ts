@@ -6,4 +6,5 @@ export * from './Switch';
 export * from './Pill';
 export * from './Typography';
 export * from './Input';
+export * from './NewIngredientGroup';
 export * from './Modal';

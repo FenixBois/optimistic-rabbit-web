@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
+import type {FC} from 'react';
+import {AccessibleIcon} from '@radix-ui/react-accessible-icon';
 
-import { ArrowDown, ArrowUp, Close, MoonIcon, SearchIcon, SunIcon } from './Icons';
-import { IconBox } from './Icon.styles';
+import {ArrowDown, ArrowUp, Minus, MoonIcon, SearchIcon, SunIcon, Close} from './Icons';
+import {IconBox} from './Icon.styles';
 
 export enum Types {
     MOON_ICON = 'moonIcon',
@@ -10,6 +10,7 @@ export enum Types {
     SUN_ICON = 'sunIcon',
     ARROW_DOWN = 'arrowDown',
     ARROW_UP = 'arrowUp',
+    MINUS = 'minus',
     CLOSE = 'close',
 }
 
@@ -29,6 +30,8 @@ const getIcon = (type: Types) => {
             return ArrowUp;
         case Types.CLOSE:
             return Close;
+        case Types.MINUS:
+            return Minus;
 
         default:
             assertIconExists(type);

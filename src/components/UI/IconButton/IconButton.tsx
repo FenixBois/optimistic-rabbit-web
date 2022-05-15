@@ -1,7 +1,7 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
-import { forwardRef } from 'react';
-import type { VariantProps } from 'styles';
-import { IconButtonStyled } from './IconButton.styles';
+import type {ButtonHTMLAttributes, ReactNode} from 'react';
+import {forwardRef} from 'react';
+import type {VariantProps} from 'styles';
+import {IconButtonStyled} from './IconButton.styles';
 
 type NativeIconButtonAttributes = Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'form'>;
 
@@ -12,9 +12,9 @@ export interface IconButtonProps extends VariantProps<typeof IconButtonStyled>, 
 }
 
 export const IconButton = forwardRef<IconButtonRef, IconButtonProps>(
-    ({ children, color, ...props }: IconButtonProps, ref) => {
+    ({children, color, size, ...props}: IconButtonProps, ref) => {
         return (
-            <IconButtonStyled ref={ref} color={color} {...props}>
+            <IconButtonStyled ref={ref} color={color} size={size} {...props}>
                 {children}
             </IconButtonStyled>
         );

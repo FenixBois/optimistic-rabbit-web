@@ -1,23 +1,27 @@
-import type { ReactNode } from 'react';
-import { useState } from 'react';
-import { Icon } from '../Icon';
+import type {ReactNode} from 'react';
+import {useState} from 'react';
+import {Icon} from '../Icon';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 
-import { ListboxButtonStyled, ListboxListStyled, SelectBody, SelectInput, SelectItemStyled } from './Select.styles';
-import { VariantProps } from '@stitches/react';
+import {ListboxButtonStyled, ListboxListStyled, SelectBody, SelectInput, SelectItemStyled} from './Select.styles';
+import {VariantProps} from '@stitches/react';
+import {subMenuAnimate} from "./SelectAnimation";
 
 interface SelectTypeProps extends VariantProps<typeof SelectInput> {
     children: ReactNode;
     onChange: (value: string) => void;
 }
 
-interface SelectItemTypeProps {
+interface SelectItemTypeProps extends VariantProps<typeof SelectItemStyled> {
     value: string | 'default';
     children: ReactNode;
 }
 
-export const Select = ({ children, type, onChange }: SelectTypeProps) => {
+export const Select = ({
+                           ref, children, type, onChange = () => {
+    }
+                       }: SelectTypeProps) => {
     const [value, setValue] = useState<string | null>(null);
 
     const subMenuAnimate = {
@@ -48,8 +52,12 @@ export const Select = ({ children, type, onChange }: SelectTypeProps) => {
     };
 
     return (
-        <SelectInput type={type} value={value ?? 'default'} onChange={handleChange}>
-            {({ valueLabel, isExpanded }) => (
+
+        <SelectInput
+
+            type={type} value={value ?? 'default'} onChange={handleChange} ref={ref}
+        >
+            {({valueLabel, isExpanded}) => (
                 <>
                     <ListboxButtonStyled
                         arrow={
@@ -86,6 +94,6 @@ export const Select = ({ children, type, onChange }: SelectTypeProps) => {
     );
 };
 
-export const SelectItem = ({ children, value }: SelectItemTypeProps) => {
-    return <SelectItemStyled value={value}>{children}</SelectItemStyled>;
+export const SelectItem = ({children, value, type}: SelectItemTypeProps) => {
+    return <SelectItemStyled value={value} type={type}>{children}</SelectItemStyled>;
 };
