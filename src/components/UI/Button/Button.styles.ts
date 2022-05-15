@@ -13,7 +13,7 @@ export const ButtonStyled = styled('button', {
     fontWeight: '$semibold',
 
     variants: {
-        type: {
+        color: {
             primary: {
                 backgroundColor: '$primarySolid',
                 color: '$primaryHighContrastText',
@@ -34,7 +34,7 @@ export const ButtonStyled = styled('button', {
     },
 
     defaultVariants: {
-        type: 'primary',
+        color: 'primary',
         size: 'normal',
     },
 });
