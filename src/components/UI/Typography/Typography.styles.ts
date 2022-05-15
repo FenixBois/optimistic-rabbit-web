@@ -2,6 +2,7 @@ import { styled } from 'styles';
 
 export const TextStyled = styled('p', {
     color: '$highContrastText',
+    fontFamily: '$poppins',
 
     variants: {
         size: {

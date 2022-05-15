@@ -36,6 +36,8 @@ export const { styled, css, getCssText, config } = createStitches({
             // sand10: '#868682', // solid hover
             lowContrastText: '#706f6c', // low contrast text
             highContrastText: '#1b1b18', // high contrast text
+
+            overlayColor: '#1b1b1833',
         },
         sizes: {
             input: '32px',
