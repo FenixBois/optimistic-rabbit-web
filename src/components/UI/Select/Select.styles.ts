@@ -3,7 +3,7 @@ import {ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover}
 
 export const SelectInput = styled(ListboxInput, {
     display: 'flex',
-    height: '100%',
+    height: '$input',
 
     '& [data-reach-listbox-button]': {
         display: 'flex',
@@ -44,8 +44,8 @@ export const SelectInput = styled(ListboxInput, {
                     color: '$highContrastText',
                     fontWeight: '$regular',
                     fontSize: '$md',
+                    height: '$input',
 
-                    py: 5,
                     px: 10,
 
                     borderRadius: 7,

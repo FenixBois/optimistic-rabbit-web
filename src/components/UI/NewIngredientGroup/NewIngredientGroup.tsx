@@ -80,7 +80,7 @@ export function NewIngredientGroup() {
                             )}
                         />
 
-                        <IconButton size={'normal'} color={'primary'}
+                        <IconButton size={'normal'} color={'primaryLight'}
                                     onClick={(e: { preventDefault: () => void; }) => {
                                         e.preventDefault();
                                         remove(index)
@@ -95,7 +95,7 @@ export function NewIngredientGroup() {
                     </Ingredient>
 
                 ))}
-                <Button size={'large'} onClick={(e: { preventDefault: () => void; }) => {
+                <Button css={{marginTop: 10}} size={'normal'} onClick={(e: { preventDefault: () => void; }) => {
                     e.preventDefault();
                     append({
                         name: undefined,

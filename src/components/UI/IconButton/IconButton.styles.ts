@@ -8,6 +8,10 @@ export const IconButtonStyled = styled('button', {
     alignItems: "center",
     justifyContent: "center",
 
+    '&:hover': {
+        cursor: 'pointer',
+    },
+
     variants: {
         color: {
             primary: {
@@ -15,13 +19,18 @@ export const IconButtonStyled = styled('button', {
                 color: '$primaryHighContrastText',
                 '&:hover': {
                     backgroundColor: '$primarySolidHover',
-                    cursor: 'pointer',
+                },
+            },
+            primaryLight: {
+                backgroundColor: '$primaryElementBackground',
+                color: '$primaryLowContrastText',
+                '&:hover': {
+                    backgroundColor: 'primaryElementHover',
                 },
             },
             secondary: {
                 backgroundColor: '$greyElementBackground',
                 color: '$highContrastText',
-                cursor: 'pointer',
             },
         },
         size: {

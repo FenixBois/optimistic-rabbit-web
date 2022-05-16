@@ -1,4 +1,4 @@
-import { styled } from 'styles';
+import {styled} from 'styles';
 
 export const InputWrapper = styled('div', {
     display: 'inline-flex',
@@ -65,12 +65,12 @@ export const InputStyled = styled('input', {
         type: {
             disabled: {},
             primary: {
-                fontSize: '$large',
+                fontSize: '$lg',
                 fontWeight: '$semibold',
                 color: '$primaryLowContrastText',
             },
             secondary: {
-                fontSize: '$medium',
+                fontSize: '$md',
                 fontWeight: '$regular',
                 color: '$lowContrastText',
             },

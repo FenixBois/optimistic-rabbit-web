@@ -1,4 +1,4 @@
-import { styled } from 'styles';
+import {styled} from 'styles';
 
 export const TextStyled = styled('p', {
     color: '$highContrastText',
@@ -9,8 +9,8 @@ export const TextStyled = styled('p', {
             md: {
                 fontSize: '$md',
             },
-            l: {
-                fontSize: '$l',
+            lg: {
+                fontSize: '$lg',
             },
             xl: {
                 fontSize: '$xl',

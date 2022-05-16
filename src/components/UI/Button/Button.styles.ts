@@ -3,7 +3,6 @@ import {styled} from 'styles';
 export const ButtonStyled = styled('button', {
     borderRadius: 15,
     border: 'none',
-    py: 18,
     px: 20,
 
     display: 'flex',
@@ -36,6 +35,10 @@ export const ButtonStyled = styled('button', {
         size: {
             normal: {
                 height: '$input',
+                borderRadius: '$smallInputBorderRadius',
+                fontSize: '$md',
+                fontWeight: '$regular',
+                px: 15,
             },
             large: {
                 height: '$largeInput',

@@ -54,7 +54,7 @@ export const {styled, css, getCssText, config} = createStitches({
         },
         fontSizes: {
             md: '1rem',
-            l: '1.14rem',
+            lg: '1.14rem',
             xl: '1.7rem',
             xxl: '2.28rem',
             pageTitle: '6rem',
