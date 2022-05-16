@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { InputStyled, InputWrapper, Prefix, Suffix } from './Input.styles';
 
-import type { VariantProps } from '@stitches/react';
+import type { CSS, VariantProps } from '@stitches/react';
 import type { Path, UseFormRegister } from 'react-hook-form';
 
 export interface InputProps<TFormItem> extends VariantProps<typeof InputWrapper> {
@@ -9,7 +9,7 @@ export interface InputProps<TFormItem> extends VariantProps<typeof InputWrapper>
     prefix?: ReactNode;
     as?: 'textarea' | 'input';
     register: UseFormRegister<TFormItem>;
-
+    css?: CSS;
     placeholder?: string;
     disabled?: boolean;
     id?: string;
@@ -24,6 +24,7 @@ export function Input<TFormItem>({
     register,
     type,
     id,
+    css,
     as,
     name,
     ...props
@@ -32,6 +33,7 @@ export function Input<TFormItem>({
         <InputWrapper type={disabled ? 'disabled' : type}>
             {prefix ? <Prefix>{prefix}</Prefix> : null}
             <InputStyled
+                css={css}
                 type={type}
                 id={id}
                 disabled={disabled}
