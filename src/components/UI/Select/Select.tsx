@@ -10,7 +10,9 @@ import {subMenuAnimate} from "./SelectAnimation";
 
 interface SelectTypeProps extends VariantProps<typeof SelectInput> {
     children: ReactNode;
-    onChange: (value: string) => void;
+    onChange?: (value: string) => void;
+    
+
 }
 
 interface SelectItemTypeProps extends VariantProps<typeof SelectItemStyled> {
@@ -23,26 +25,6 @@ export const Select = ({
     }
                        }: SelectTypeProps) => {
     const [value, setValue] = useState<string | null>(null);
-
-    const subMenuAnimate = {
-        enter: {
-            opacity: 1,
-
-            transition: {
-                duration: 0.2,
-            },
-            display: 'block',
-        },
-        exit: {
-            opacity: 0,
-
-            transitionEnd: {
-                duration: 0.2,
-
-                display: 'none',
-            },
-        },
-    };
 
     const SelectBodyAnimated = motion(SelectBody);
 
