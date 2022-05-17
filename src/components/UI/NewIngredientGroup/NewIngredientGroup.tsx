@@ -1,9 +1,9 @@
-import {Ingredient, NewIngredientGroupStyled} from './NewIngredientGroup.styles';
-import {Button, Icon, IconButton, Input, Select, SelectItem} from 'components/UI';
-import {Controller, useFieldArray, useForm} from "react-hook-form";
-import {DevTool} from "@hookform/devtools";
+import { Ingredient, NewIngredientGroupStyled } from './NewIngredientGroup.styles';
+import { Button, Icon, IconButton, Input, Select, SelectItem } from 'components/UI';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { DevTool } from '@hookform/devtools';
 
-import type {Key} from 'react';
+import type { Key } from 'react';
 
 type FormValues = {
     ingredients: {
@@ -14,21 +14,14 @@ type FormValues = {
 };
 
 export function NewIngredientGroup() {
-
-    const {
-        register,
-        control,
-        handleSubmit,
-        setValue,
-        formState: {errors}
-    } = useForm<FormValues>({
+    const { register, control, handleSubmit } = useForm<FormValues>({
         defaultValues: {
-            ingredients: [{name: undefined, amount: undefined, unit: undefined}]
-        }
+            ingredients: [{ name: undefined, amount: undefined, unit: undefined }],
+        },
     });
-    const {fields, append, remove} = useFieldArray({
-        name: "ingredients",
-        control
+    const { fields, append, remove } = useFieldArray({
+        name: 'ingredients',
+        control,
     });
 
     const onSubmit = (data: FormValues) => console.log(data);
@@ -48,64 +41,62 @@ export function NewIngredientGroup() {
         },
     ];
 
-    return (<>
-
+    return (
+        <>
             <NewIngredientGroupStyled onSubmit={handleSubmit(onSubmit)}>
-                {fields.map((field: { id: Key | null | undefined; }, index: number) => (
+                {fields.map((field: { id: Key | null | undefined }, index: number) => (
                     <Ingredient key={field.id}>
-                        <Input register={register} name={`ingredients.${index}.name` as const} type={'secondary'}
-                               placeholder={'Tomatoes'}/>
-                        <Input register={register} name={`ingredients.${index}.amount` as const} type={'secondary'}
-                               placeholder={'3'}
-                               css={{width: 30}}/>
-
-                        <Controller
-                            control={control}
-                            name={`ingredients.${index}.type` as const}
-
-                            render={({field: {onChange, value, ref}}) => (
-                                <Select
-                                    type={"secondary"}
-                                    ref={ref}
-                                    onChange={onChange}
-                                    value={value}
-
-                                >
-                                    {dropDownUnits.map(unit => (
-                                        <SelectItem type={'secondary'} key={unit.id} value={unit.description}>
-                                            {unit.description}
-                                        </SelectItem>
-                                    ))}
-                                </Select>
-                            )}
+                        <Input
+                            register={register}
+                            name={`ingredients.${index}.name` as const}
+                            type={'secondary'}
+                            placeholder={'Tomatoes'}
+                        />
+                        <Input
+                            register={register}
+                            name={`ingredients.${index}.amount` as const}
+                            type={'secondary'}
+                            placeholder={'3'}
+                            css={{ width: 30 }}
                         />
 
-                        <IconButton size={'normal'} color={'primaryLight'}
-                                    onClick={(e: { preventDefault: () => void; }) => {
-                                        e.preventDefault();
-                                        remove(index)
-                                    }}
+                        <Select control={control} name={`ingredients.${index}.unit` as const} type={'secondary'}>
+                            {dropDownUnits.map(unit => (
+                                <SelectItem type={'secondary'} key={unit.id} value={unit.description}>
+                                    {unit.description}
+                                </SelectItem>
+                            ))}
+                        </Select>
+
+                        <IconButton
+                            size={'normal'}
+                            color={'primaryLight'}
+                            onClick={(e: { preventDefault: () => void }) => {
+                                e.preventDefault();
+                                remove(index);
+                            }}
                         >
-                            <Icon
-                                label={'Remove'}
-                                size={'medium'}
-                                type={Icon.Types.MINUS}
-                            />
+                            <Icon label={'Remove'} size={'medium'} type={Icon.Types.MINUS} />
                         </IconButton>
                     </Ingredient>
-
                 ))}
-                <Button css={{marginTop: 10}} size={'normal'} onClick={(e: { preventDefault: () => void; }) => {
-                    e.preventDefault();
-                    append({
-                        name: undefined,
-                        amount: undefined,
-                        unit: undefined
-                    })
-                }}>Add</Button>
+                <Button
+                    css={{ marginTop: 10 }}
+                    size={'normal'}
+                    onClick={(e: { preventDefault: () => void }) => {
+                        e.preventDefault();
+                        append({
+                            name: undefined,
+                            amount: undefined,
+                            unit: undefined,
+                        });
+                    }}
+                >
+                    Add
+                </Button>
             </NewIngredientGroupStyled>
 
-            <DevTool control={control}/>
+            <DevTool control={control} />
         </>
     );
-};
+}

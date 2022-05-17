@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Icon } from '../Icon';
-import { Control, Controller } from 'react-hook-form';
+import { Control, Controller, Path } from 'react-hook-form';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -8,10 +8,10 @@ import { ListboxButtonStyled, ListboxListStyled, SelectBody, SelectInput, Select
 import { VariantProps } from '@stitches/react';
 import { subMenuAnimate } from './SelectAnimation';
 
-interface SelectTypeProps extends VariantProps<typeof SelectInput> {
+interface SelectTypeProps<TFormValues> extends VariantProps<typeof SelectInput> {
     children: ReactNode;
-    name: string;
-    control: Control;
+    name: Path<TFormValues>;
+    control: Control<TFormValues>;
     defaultValue?: string;
 }
 
@@ -20,7 +20,7 @@ interface SelectItemTypeProps extends VariantProps<typeof SelectItemStyled> {
     children: ReactNode;
 }
 
-export function Select({ control, children, defaultValue, type, name }: SelectTypeProps) {
+export function Select<TFormValues>({ control, children, defaultValue, type, name }: SelectTypeProps<TFormValues>) {
     const SelectBodyAnimated = motion(SelectBody);
 
     return (
@@ -28,7 +28,7 @@ export function Select({ control, children, defaultValue, type, name }: SelectTy
             control={control}
             name={name}
             render={({ field: { onChange, value, name, ref } }) => (
-                <SelectInput type={type} value={value} name={name} onChange={onChange} ref={ref}>
+                <SelectInput type={type} value={value as string} name={name} onChange={onChange} ref={ref}>
                     {({ valueLabel, isExpanded }) => (
                         <>
                             <ListboxButtonStyled
