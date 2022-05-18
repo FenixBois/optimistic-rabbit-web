@@ -30,10 +30,25 @@ export const Typography = styled('p', {
                 fontWeight: '$bold',
             },
         },
+        color: {
+            highContrast: {
+                color: '$highContrastText',
+            },
+            lowContrast: {
+                color: '$lowContrastText',
+            },
+            primaryHighContrast: {
+                color: '$primaryHighContrastText',
+            },
+            primaryLowContrast: {
+                color: '$primaryLowContrastText',
+            },
+        },
     },
 
     defaultVariants: {
         size: 'medium',
         weight: 'regular',
+        color: 'highContrast',
     },
 });

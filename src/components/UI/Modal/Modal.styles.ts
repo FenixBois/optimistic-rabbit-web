@@ -34,7 +34,7 @@ export const DialogContent = styled(Content, {
     backgroundColor: '$appBackground',
     fontFamily: '$poppins',
 
-    borderRadius: 20,
+    borderRadius: '$largeBorderRadius',
     boxShadow: '0px 0px 15px 0px #00000040',
     position: 'fixed',
     top: '50%',

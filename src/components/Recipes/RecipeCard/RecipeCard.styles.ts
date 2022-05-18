@@ -15,8 +15,3 @@ export const ContainerStyled = styled('div', {
         border: 'solid 4px $greyBorderHover',
     },
 });
-
-export const PillContainerStyled = styled('div', {
-    marginTop: 20,
-    marginBottom: 5,
-});

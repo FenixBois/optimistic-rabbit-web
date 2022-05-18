@@ -46,6 +46,7 @@ export const { styled, css, getCssText, config } = createStitches({
         radii: {
             inputBorderRadius: '0.938rem',
             smallInputBorderRadius: '7px',
+            largeBorderRadius: '20px',
         },
         fontWeights: {
             regular: 400,
@@ -53,10 +54,10 @@ export const { styled, css, getCssText, config } = createStitches({
             bold: 700,
         },
         fontSizes: {
-            md: '1rem',
-            lg: '1.14rem',
-            xl: '1.7rem',
-            xxl: '2.28rem',
+            md: '1rem', // 14px
+            lg: '1.14rem', // 16px
+            xl: '1.7rem', // 24px
+            xxl: '2.28rem', // 32px
             pageTitle: '6rem',
             buttonText: '1.14rem',
         },

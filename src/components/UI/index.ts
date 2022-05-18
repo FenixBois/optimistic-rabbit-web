@@ -7,3 +7,4 @@ export * from './Pill';
 export * from './Typography';
 export * from './Input';
 export * from './Modal';
+export * from './Stepper';
