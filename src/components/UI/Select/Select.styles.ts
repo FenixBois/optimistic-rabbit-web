@@ -27,10 +27,10 @@ export const SelectInput = styled(ListboxInput, {
                     color: '$primaryLowContrastText',
                     fontWeight: '$semibold',
 
-                    py: 11,
+                    py: 22,
                     px: 15,
 
-                    borderRadius: 15,
+                    borderRadius: '$inputBorderRadius',
 
                     '&:hover': {
                         backgroundColor: '$primaryElementHover',
@@ -47,7 +47,7 @@ export const SelectInput = styled(ListboxInput, {
 
                     px: 10,
 
-                    borderRadius: 7,
+                    borderRadius: '$smallInputBorderRadius',
 
                     '&:hover': {
                         backgroundColor: '$greyElementHover',
@@ -63,12 +63,15 @@ export const SelectInput = styled(ListboxInput, {
 
 export const SelectBody = styled(ListboxPopover, {
     marginTop: 5,
-    borderRadius: 15,
+    borderRadius: '$inputBorderRadius',
     minWidth: 'fit-content',
+    boxShadow: '0px 0px 15px 0px #00000040',
+
 
     ':focus-visible': {
         outline: 'none',
     },
+
 
     variants: {
         type: {
@@ -107,7 +110,7 @@ export const ListboxButtonStyled = styled(ListboxButton, {});
 export const SelectItemStyled = styled(ListboxOption, {
     listStyleType: 'none',
     cursor: 'pointer',
-    borderRadius: 15,
+    borderRadius: '$inputBorderRadius',
 
     variants: {
         type: {

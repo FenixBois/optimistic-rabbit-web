@@ -13,6 +13,8 @@ export function NewIngredientGroup() {
         control,
     });
 
+    console.log(fields);
+
     const dropDownUnits = [
         {
             id: 1,
@@ -34,14 +36,14 @@ export function NewIngredientGroup() {
                 {fields.map((field: { id: Key | null | undefined }, index: number) => (
                     <Ingredient key={field.id}>
                         <Input
-                            label={index === 0 ? 'Ingredience' : undefined}
+                            label={index === 0 ? 'Ingredients' : undefined}
                             register={register}
                             name={`ingredients.${index}.name` as const}
                             type={'secondary'}
                             placeholder={'Tomatoes'}
                         />
                         <Input
-                            label={index === 0 ? 'Počet' : undefined}
+                            label={index === 0 ? 'Amount' : undefined}
                             register={register}
                             name={`ingredients.${index}.amount` as const}
                             type={'secondary'}
@@ -55,7 +57,7 @@ export function NewIngredientGroup() {
                                 </SelectItem>
                             ))}
                         </Select>
-                        {index !== 0 && (
+                        {fields.length > 1 && (
                             <IconButton
                                 size={'normal'}
                                 color={'primaryLight'}
@@ -68,20 +70,22 @@ export function NewIngredientGroup() {
                             </IconButton>
                         )}
 
-                        <IconButton
-                            size={'normal'}
-                            color={'primaryLight'}
-                            onClick={(e: { preventDefault: () => void }) => {
-                                e.preventDefault();
-                                append({
-                                    name: undefined,
-                                    amount: undefined,
-                                    unit: undefined,
-                                });
-                            }}
-                        >
-                            <Icon label={'Remove'} size={'medium'} type={Icon.Types.MINUS} />
-                        </IconButton>
+                        {index + 1 === fields.length && (
+                            <IconButton
+                                size={'normal'}
+                                color={'primary'}
+                                onClick={(e: { preventDefault: () => void }) => {
+                                    e.preventDefault();
+                                    append({
+                                        name: undefined,
+                                        amount: undefined,
+                                        unit: undefined,
+                                    });
+                                }}
+                            >
+                                <Icon label={'Add'} size={'medium'} type={Icon.Types.PLUS} />
+                            </IconButton>
+                        )}
                     </Ingredient>
                 ))}
             </NewIngredientGroupStyled>
