@@ -1,19 +1,13 @@
 import { PillContainerStyled } from './PillContainer.styles';
 import { Pill } from '../Pill';
+import { Recipe } from 'types';
 
 export interface PillContainerProps {
     recipe: Recipe;
 }
 
-interface Recipe {
-    time: number;
-    difficulty: string;
-    taste: string;
-    media: string;
-}
-
 export const PillContainer = ({ recipe }: PillContainerProps) => {
-    const tags = [`${recipe.time} minutes`, recipe.difficulty, recipe.taste, recipe.media];
+    const tags = [`${recipe?.time} minutes`, recipe?.difficulty, recipe?.taste, recipe?.media];
 
     return (
         <PillContainerStyled>

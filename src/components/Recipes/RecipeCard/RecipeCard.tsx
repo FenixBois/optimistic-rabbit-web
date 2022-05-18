@@ -1,32 +1,18 @@
-import { Typography } from 'components/UI';
+import { PillContainer, Typography } from 'components/UI';
 import { ContainerStyled } from './RecipeCard.styles';
-import { PillContainer } from '../../UI/PillContainer';
-import { RECIPE } from 'components/Recipes/RecipeDetail/RecipeDetailData';
+import { Recipe } from 'types';
 
-interface RecipeCard {}
+interface RecipeCardProps {
+    recipe: Recipe;
+}
 
-export const RecipeCard = () => {
-    const tags = [
-        {
-            id: 1,
-            type: 'Select 1',
-        },
-        {
-            id: 2,
-            type: 'Select 2',
-        },
-        {
-            id: 3,
-            type: 'Select 3',
-        },
-    ];
-
+export const RecipeCard = ({ recipe }: RecipeCardProps) => {
     return (
         <ContainerStyled>
             <Typography size={'xl'} weight={'semibold'}>
-                Very epic recipe name
+                {recipe?.name}
             </Typography>
-            <PillContainer recipe={RECIPE} />
+            <PillContainer recipe={recipe} />
         </ContainerStyled>
     );
 };

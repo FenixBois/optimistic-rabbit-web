@@ -1,17 +1,17 @@
-import { Stepper, Typography } from 'components/UI';
-import { RECIPE } from './RecipeDetailData';
+import { PillContainer, Stepper, Typography } from 'components/UI';
 import { DirectionsStyled, IngredientListStyled, IngredientsStyled, RecipeDetailStyled } from './RecipeDetail.styles';
 import { useState } from 'react';
-import { PillContainer } from '../../UI/PillContainer';
+import { Recipe } from 'types';
 
-interface RecipeDetailProps {}
+interface RecipeDetailProps {
+    recipe: Recipe;
+}
 
-export const RecipeDetail = () => {
+export const RecipeDetail = ({ recipe }: RecipeDetailProps) => {
     const [servings, setServings] = useState(1);
-
     return (
         <RecipeDetailStyled>
-            <PillContainer recipe={RECIPE} />
+            <PillContainer recipe={recipe} />
             <IngredientsStyled>
                 <Typography size={'xl'} weight={'semibold'}>
                     Ingredients
@@ -23,13 +23,14 @@ export const RecipeDetail = () => {
                     onDecrease={() => setServings(servings - 1)}
                 />
                 <IngredientListStyled>
-                    {RECIPE.ingredients.map(ingredient => (
-                        <li key={ingredient.id}>
-                            <Typography>
-                                {ingredient.name} - {ingredient.amount * servings} {ingredient.unit}
-                            </Typography>
-                        </li>
-                    ))}
+                    {recipe.ingredients &&
+                        recipe.ingredients.map(ingredient => (
+                            <li key={ingredient.id}>
+                                <Typography>
+                                    {ingredient.name} - {ingredient.amount * servings} {ingredient.unit}
+                                </Typography>
+                            </li>
+                        ))}
                 </IngredientListStyled>
             </IngredientsStyled>
             <DirectionsStyled>
@@ -37,7 +38,7 @@ export const RecipeDetail = () => {
                     Directions
                 </Typography>
                 <Typography size={'md'} weight={'regular'} color={'primaryHighContrast'}>
-                    {RECIPE.description}
+                    {recipe.description}
                 </Typography>
             </DirectionsStyled>
         </RecipeDetailStyled>

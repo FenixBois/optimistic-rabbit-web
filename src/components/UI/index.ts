@@ -8,3 +8,4 @@ export * from './Typography';
 export * from './Input';
 export * from './Modal';
 export * from './Stepper';
+export * from './PillContainer';
