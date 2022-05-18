@@ -15,7 +15,7 @@ export function SearchBarForm() {
     return (
         <SearchBarFormStyled onSubmit={handleSubmit(onSubmit)}>
             <SearchInputBox>
-                <Input register={register} name={'bartok'} type={'primary'} />
+                <Input register={register} name={'bartok'} type={'primary'} placeholder={'Search for a recipe!'} />
                 <CreateRecipeModal />
             </SearchInputBox>
             <SelectContainerStyled>
