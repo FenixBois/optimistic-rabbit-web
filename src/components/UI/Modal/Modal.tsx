@@ -1,33 +1,33 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { Close, Portal, Title } from '@radix-ui/react-dialog';
-import { forwardRef, ReactNode } from 'react';
-import { Icon } from '../Icon';
-import { Typography } from '../Typography';
+import {Close, Portal, Title} from '@radix-ui/react-dialog';
+import {forwardRef, ReactNode} from 'react';
+import {Icon} from '../Icon';
+import {Typography} from '../Typography';
 
-import { DialogContent, Header, StyledOverlay } from './Modal.styles';
-import { IconButtonStyled } from '../IconButton';
+import {DialogContent, Header, StyledOverlay} from './Modal.styles';
+import {IconButtonStyled} from '../IconButton';
 
 interface ModalProps {
     title?: string;
     children?: ReactNode;
 }
 
-export const ModalContent = forwardRef<HTMLDivElement, ModalProps>(({ children, title }, forwardedRef) => {
+export const ModalContent = forwardRef<HTMLDivElement, ModalProps>(({children, title}, forwardedRef) => {
     return (
         <Portal>
-            <StyledOverlay />
+            <StyledOverlay/>
             <DialogContent ref={forwardedRef}>
                 <Header>
                     {title && (
                         <Title>
-                            <Typography size={'xl'} weight={'bold'}>
+                            <Typography size={'xxl'} weight={'semibold'}>
                                 {title}
                             </Typography>
                         </Title>
                     )}
                     <Close asChild>
                         <IconButtonStyled color={'secondary'}>
-                            <Icon type={Icon.Types.CLOSE} />
+                            <Icon type={Icon.Types.CLOSE}/>
                         </IconButtonStyled>
                     </Close>
                 </Header>

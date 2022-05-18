@@ -1,10 +1,10 @@
 import type * as Stitches from '@stitches/react';
-import {createStitches, createTheme, globalCss} from '@stitches/react';
+import { createStitches, createTheme, globalCss } from '@stitches/react';
 
-export type {VariantProps} from '@stitches/react';
-export type {PropertyValue} from '@stitches/react';
+export type { VariantProps } from '@stitches/react';
+export type { PropertyValue } from '@stitches/react';
 
-export const {styled, css, getCssText, config} = createStitches({
+export const { styled, css, getCssText, config } = createStitches({
     media: {
         sm: '(min-width: 640px)',
         md: '(min-width: 768px)',
@@ -46,6 +46,7 @@ export const {styled, css, getCssText, config} = createStitches({
         radii: {
             inputBorderRadius: '0.938rem',
             smallInputBorderRadius: '7px',
+            largeBorderRadius: '20px',
         },
         fontWeights: {
             regular: 400,
@@ -53,10 +54,10 @@ export const {styled, css, getCssText, config} = createStitches({
             bold: 700,
         },
         fontSizes: {
-            md: '1rem',
-            lg: '1.14rem',
-            xl: '1.7rem',
-            xxl: '2.28rem',
+            md: '1rem', // 14px
+            lg: '1.14rem', // 16px
+            xl: '1.7rem', // 24px
+            xxl: '2.28rem', // 32px
             pageTitle: '6rem',
             buttonText: '1.14rem',
         },
@@ -114,8 +115,8 @@ export const darkTheme = createTheme({
 });
 
 const GlobalStyles = globalCss({
-    '*': {margin: 0, padding: 0, fontFamily: '$poppins'},
-    html: {fontSize: 14},
+    '*': { fontFamily: '$poppins' },
+    html: { fontSize: 14 },
 });
 
 GlobalStyles();

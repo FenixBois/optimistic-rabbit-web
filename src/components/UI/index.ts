@@ -8,3 +8,4 @@ export * from './Typography';
 export * from './Input';
 export * from './NewIngredientGroup';
 export * from './Modal';
+export * from './Stepper';

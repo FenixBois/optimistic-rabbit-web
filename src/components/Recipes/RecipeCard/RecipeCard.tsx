@@ -1,5 +1,7 @@
-import { Pill, Typography } from 'components/UI';
-import { ContainerStyled, PillContainerStyled } from './RecipeCard.styles';
+import { Typography } from 'components/UI';
+import { ContainerStyled } from './RecipeCard.styles';
+import { PillContainer } from '../../UI/PillContainer';
+import { RECIPE } from 'components/Recipes/RecipeDetail/RecipeDetailData';
 
 interface RecipeCard {}
 
@@ -24,11 +26,7 @@ export const RecipeCard = () => {
             <Typography size={'xl'} weight={'semibold'}>
                 Very epic recipe name
             </Typography>
-            <PillContainerStyled>
-                {tags.map(tag => (
-                    <Pill key={tag.id}>{tag.type}</Pill>
-                ))}
-            </PillContainerStyled>
+            <PillContainer recipe={RECIPE} />
         </ContainerStyled>
     );
 };
