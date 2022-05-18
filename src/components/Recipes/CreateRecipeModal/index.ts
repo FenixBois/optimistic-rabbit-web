@@ -1,1 +1,1 @@
-export * from "./CreateRecepieModal"
+export * from './CreateRecipeModal';

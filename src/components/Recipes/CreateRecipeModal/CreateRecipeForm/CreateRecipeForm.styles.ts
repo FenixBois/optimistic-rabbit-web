@@ -9,7 +9,6 @@ export const InfoBox = styled('div', {
 
 export const TagsBox = styled('div', {
     display: 'flex',
-
     gap: 10,
 });
 export const TagsWrapper = styled('div', {
@@ -21,5 +20,5 @@ export const TagsWrapper = styled('div', {
 export const Form = styled('form', {
     display: 'flex',
     flexDirection: 'column',
-    gap: 10,
+    gap: 20,
 });

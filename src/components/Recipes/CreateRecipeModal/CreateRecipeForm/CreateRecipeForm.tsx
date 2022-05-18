@@ -6,7 +6,7 @@ import uniqid from 'uniqid';
 
 import type { CreateRecipeFormValues } from './types';
 import { TagsData } from './types';
-import { Form, InfoBox, TagsBox, TagsWrapper } from './CreateRecepieForm.styles';
+import { Form, InfoBox, TagsBox, TagsWrapper } from './CreateRecipeForm.styles';
 import { NewIngredientGroup } from '../NewIngredientGroup';
 
 export function CreateRecipeForm() {
@@ -28,7 +28,7 @@ export function CreateRecipeForm() {
         <FormProvider {...methods}>
             <Form>
                 <InfoBox>
-                    <Input placeholder={'Amazing chicken'} register={register} name={'title'} label={'Recepie title'} />{' '}
+                    <Input placeholder={'Amazing chicken'} register={register} name={'title'} label={'Recipe title'} />{' '}
                     <Input
                         placeholder={'45'}
                         register={register}
@@ -50,7 +50,7 @@ export function CreateRecipeForm() {
                                 name={dropdown.name}
                             >
                                 {dropdown.options.map(option => (
-                                    <SelectItem key={uniqid()} value={option[1]}>
+                                    <SelectItem key={uniqid()} value={option[1]} type={'secondary'}>
                                         {option[0]}
                                     </SelectItem>
                                 ))}
@@ -60,8 +60,10 @@ export function CreateRecipeForm() {
                 </TagsWrapper>
 
                 <NewIngredientGroup />
-                <Input as={'textarea'} register={register} rows={4} name={'title'} label={'Recepie title'} />
-                <Button size={'large'}>Create recipe</Button>
+                <Input as={'textarea'} register={register} rows={4} name={'title'} label={'Preparation instructions'} />
+                <Button css={{ alignSelf: 'start' }} size={'large'}>
+                    Create recipe
+                </Button>
             </Form>
             <DevTool control={control} />
         </FormProvider>
