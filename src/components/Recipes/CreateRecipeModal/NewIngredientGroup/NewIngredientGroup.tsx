@@ -1,30 +1,17 @@
 import { Ingredient, NewIngredientGroupStyled } from './NewIngredientGroup.styles';
-import { Button, Icon, IconButton, Input, Select, SelectItem } from 'components/UI';
-import { useFieldArray, useForm } from 'react-hook-form';
-import { DevTool } from '@hookform/devtools';
+import { Icon, IconButton, Input, Select, SelectItem } from 'components/UI';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import type { Key } from 'react';
-
-type FormValues = {
-    ingredients: {
-        name: string;
-        amount: number;
-        unit: string;
-    }[];
-};
+import { CreateRecipeFormValues } from '../CreateRecipeForm/types';
 
 export function NewIngredientGroup() {
-    const { register, control, handleSubmit } = useForm<FormValues>({
-        defaultValues: {
-            ingredients: [{ name: undefined, amount: undefined, unit: undefined }],
-        },
-    });
+    const { register, control } = useFormContext<CreateRecipeFormValues>();
+
     const { fields, append, remove } = useFieldArray({
         name: 'ingredients',
         control,
     });
-
-    const onSubmit = (data: FormValues) => console.log(data);
 
     const dropDownUnits = [
         {
@@ -43,23 +30,24 @@ export function NewIngredientGroup() {
 
     return (
         <>
-            <NewIngredientGroupStyled onSubmit={handleSubmit(onSubmit)}>
+            <NewIngredientGroupStyled>
                 {fields.map((field: { id: Key | null | undefined }, index: number) => (
                     <Ingredient key={field.id}>
                         <Input
+                            label={index === 0 ? 'Ingredience' : undefined}
                             register={register}
                             name={`ingredients.${index}.name` as const}
                             type={'secondary'}
                             placeholder={'Tomatoes'}
                         />
                         <Input
+                            label={index === 0 ? 'Počet' : undefined}
                             register={register}
                             name={`ingredients.${index}.amount` as const}
                             type={'secondary'}
                             placeholder={'3'}
                             css={{ width: 30 }}
                         />
-
                         <Select control={control} name={`ingredients.${index}.unit` as const} type={'secondary'}>
                             {dropDownUnits.map(unit => (
                                 <SelectItem type={'secondary'} key={unit.id} value={unit.description}>
@@ -67,36 +55,36 @@ export function NewIngredientGroup() {
                                 </SelectItem>
                             ))}
                         </Select>
+                        {index !== 0 && (
+                            <IconButton
+                                size={'normal'}
+                                color={'primaryLight'}
+                                onClick={(e: { preventDefault: () => void }) => {
+                                    e.preventDefault();
+                                    remove(index);
+                                }}
+                            >
+                                <Icon label={'Remove'} size={'medium'} type={Icon.Types.MINUS} />
+                            </IconButton>
+                        )}
 
                         <IconButton
                             size={'normal'}
                             color={'primaryLight'}
                             onClick={(e: { preventDefault: () => void }) => {
                                 e.preventDefault();
-                                remove(index);
+                                append({
+                                    name: undefined,
+                                    amount: undefined,
+                                    unit: undefined,
+                                });
                             }}
                         >
                             <Icon label={'Remove'} size={'medium'} type={Icon.Types.MINUS} />
                         </IconButton>
                     </Ingredient>
                 ))}
-                <Button
-                    css={{ marginTop: 10 }}
-                    size={'normal'}
-                    onClick={(e: { preventDefault: () => void }) => {
-                        e.preventDefault();
-                        append({
-                            name: undefined,
-                            amount: undefined,
-                            unit: undefined,
-                        });
-                    }}
-                >
-                    Add
-                </Button>
             </NewIngredientGroupStyled>
-
-            <DevTool control={control} />
         </>
     );
 }

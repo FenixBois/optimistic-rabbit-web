@@ -1,8 +1,7 @@
-import {styled} from 'styles';
-import {ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover} from '@reach/listbox';
+import { styled } from 'styles';
+import { ListboxButton, ListboxInput, ListboxList, ListboxOption, ListboxPopover } from '@reach/listbox';
 
 export const SelectInput = styled(ListboxInput, {
-    display: 'flex',
     height: '$input',
 
     '& [data-reach-listbox-button]': {
@@ -99,7 +98,9 @@ export const SelectBody = styled(ListboxPopover, {
     },
 });
 
-export const ListboxListStyled = styled(ListboxList, {});
+export const ListboxListStyled = styled(ListboxList, {
+    padding: 0,
+});
 
 export const ListboxButtonStyled = styled(ListboxButton, {});
 

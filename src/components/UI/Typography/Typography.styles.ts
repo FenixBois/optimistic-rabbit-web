@@ -1,6 +1,6 @@
-import {styled} from 'styles';
+import { styled } from 'styles';
 
-export const TextStyled = styled('p', {
+export const Typography = styled('p', {
     color: '$highContrastText',
     fontFamily: '$poppins',
 

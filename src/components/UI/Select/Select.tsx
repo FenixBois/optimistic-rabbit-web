@@ -28,7 +28,7 @@ export function Select<TFormValues>({ control, children, defaultValue, type, nam
             control={control}
             name={name}
             render={({ field: { onChange, value, name, ref } }) => (
-                <SelectInput type={type} value={value as string} name={name} onChange={onChange} ref={ref}>
+                <SelectInput type={type} name={name} onChange={onChange} ref={ref}>
                     {({ valueLabel, isExpanded }) => (
                         <>
                             <ListboxButtonStyled
@@ -52,6 +52,7 @@ export function Select<TFormValues>({ control, children, defaultValue, type, nam
                             </ListboxButtonStyled>
                             <AnimatePresence exitBeforeEnter={false} initial={false} onExitComplete={() => null}>
                                 <SelectBodyAnimated
+                                    portal={true}
                                     initial="exit"
                                     type={type}
                                     animate={isExpanded ? 'enter' : 'exit'}

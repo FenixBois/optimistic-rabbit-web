@@ -1,4 +1,4 @@
-import {styled} from 'styles';
+import { styled } from 'styles';
 
 export const InputWrapper = styled('div', {
     display: 'inline-flex',
@@ -34,7 +34,6 @@ export const InputWrapper = styled('div', {
             secondary: {
                 backgroundColor: '$greyElementBackground',
                 borderRadius: 10,
-                height: '$input',
 
                 px: 12,
                 py: 6,
@@ -50,7 +49,6 @@ export const InputStyled = styled('input', {
     border: 'none',
     height: '100%',
     width: '100%',
-
     backgroundColor: 'transparent',
 
     padding: 0,
@@ -88,4 +86,10 @@ export const Prefix = styled('span', {
 
 export const Suffix = styled('span', {
     marginLeft: 10,
+});
+
+export const LabelWrapper = styled('div', {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
 });

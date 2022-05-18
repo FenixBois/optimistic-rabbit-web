@@ -1,4 +1,4 @@
-import {styled} from 'styles';
+import { styled } from 'styles';
 
 export const NewIngredientGroupStyled = styled('div', {});
 
@@ -6,8 +6,7 @@ export const Ingredient = styled('span', {
     display: 'flex',
     flexDirection: 'row',
     marginTop: '10px',
+    alignItems: 'flex-end',
 
-    '& > *': {
-        marginRight: 5,
-    },
+    gap: 5,
 });
