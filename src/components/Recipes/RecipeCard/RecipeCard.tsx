@@ -12,7 +12,7 @@ export const RecipeCard = ({ recipe }: RecipeCardProps) => {
             <Typography size={'xl'} weight={'semibold'}>
                 {recipe?.name}
             </Typography>
-            <PillContainer recipe={recipe} />
+            <PillContainer recipe={recipe} css={{ marginTop: 5 }} />
         </ContainerStyled>
     );
 };

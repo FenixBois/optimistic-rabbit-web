@@ -29,9 +29,3 @@ export const IngredientListStyled = styled('ol', {
     listStyle: 'disc',
     paddingLeft: 20,
 });
-
-export const RecipeTagsStyled = styled('div', {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 5,
-});

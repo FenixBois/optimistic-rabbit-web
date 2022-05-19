@@ -13,8 +13,6 @@ export function NewIngredientGroup() {
         control,
     });
 
-    console.log(fields);
-
     const dropDownUnits = [
         {
             id: 1,

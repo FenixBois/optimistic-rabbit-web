@@ -1,4 +1,4 @@
-import {styled} from 'styles';
+import { styled } from 'styles';
 
 export const ButtonStyled = styled('button', {
     borderRadius: 15,
@@ -29,6 +29,13 @@ export const ButtonStyled = styled('button', {
                 color: '$lowContrastText',
                 '&:hover': {
                     backgroundColor: '$greyElementHover',
+                },
+            },
+            danger: {
+                backgroundColor: '$dangerSolid',
+                color: '$appBackground',
+                '&:hover': {
+                    backgroundColor: '$dangerSolidHover',
                 },
             },
         },

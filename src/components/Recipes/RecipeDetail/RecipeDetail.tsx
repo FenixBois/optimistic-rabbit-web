@@ -1,4 +1,4 @@
-import { PillContainer, Stepper, Typography } from 'components/UI';
+import { Button, PillContainer, Stepper, Typography } from 'components/UI';
 import { DirectionsStyled, IngredientListStyled, IngredientsStyled, RecipeDetailStyled } from './RecipeDetail.styles';
 import { useState } from 'react';
 import { Recipe } from 'types';
@@ -41,6 +41,9 @@ export const RecipeDetail = ({ recipe }: RecipeDetailProps) => {
                     {recipe.description}
                 </Typography>
             </DirectionsStyled>
+            <Button css={{ alignSelf: 'start' }} color={'danger'}>
+                Delete recipe
+            </Button>
         </RecipeDetailStyled>
     );
 };

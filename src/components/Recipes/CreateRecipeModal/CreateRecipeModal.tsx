@@ -5,7 +5,7 @@ export const CreateRecipeModal = () => {
     return (
         <>
             <Modal modal={false}>
-                <ModalContent title={'Very epic long recipe name'}>
+                <ModalContent title={'Create a recipe'}>
                     <CreateRecipeForm />
                 </ModalContent>
                 <ModalTrigger asChild>
