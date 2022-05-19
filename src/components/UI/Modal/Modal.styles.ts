@@ -44,7 +44,7 @@ export const DialogContent = styled(Content, {
 
     width: '90vw',
     maxWidth: '700px',
-    maxHeight: '85vh',
+    maxHeight: '90vh',
     overflowY: 'auto',
 
     py: '33px',
