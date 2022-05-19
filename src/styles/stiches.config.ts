@@ -12,7 +12,8 @@ export const { styled, css, getCssText, config } = createStitches({
     },
     theme: {
         colors: {
-            error: '#db4324',
+            dangerSolid: '#db4324',
+            dangerSolidHover: '#ca3214',
             success: '#46a758',
 
             appBackground: '#fefdfb', // app background
