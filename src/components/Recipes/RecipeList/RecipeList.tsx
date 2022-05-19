@@ -1,10 +1,10 @@
 import { RecipeCard } from '../RecipeCard';
-import { RecipeListBox } from './RecipeList.styles';
+import { NoSearchResults, RecipeListBox } from './RecipeList.styles';
 import { fetcher, serialize } from 'utils';
 import useSWR from 'swr';
 import { Recipe } from 'types';
 import { api } from 'config';
-import { Icon, IconButton, Modal, ModalContent, ModalTrigger } from 'components/UI';
+import { Icon, IconButton, Modal, ModalContent, ModalTrigger, Typography } from 'components/UI';
 import { RecipeDetail } from '../RecipeDetail';
 import { useAtom } from 'jotai';
 import { searchFilterAtom, tagFiltersAtom } from '../../Dashboard/atoms';
@@ -41,30 +41,37 @@ export const RecipeList = () => {
 
     return (
         <RecipeListBox>
-            {data.length > 0
-                ? data.map(recipe => (
-                      <Modal modal={modalShown} onOpenChange={setModalShown} key={recipe.id}>
-                          <ModalContent
-                              headerButtons={
-                                  <IconButton
-                                      onClick={() => {
-                                          setIsCopied(true);
-                                          navigator.clipboard.writeText(`${window.location}recipes/${recipe.id}`);
-                                      }}
-                                  >
-                                      <Icon type={isCopied ? Icon.Types.ARROW_DOWN : Icon.Types.COPY} />
-                                  </IconButton>
-                              }
-                              title={recipe.name}
-                          >
-                              <RecipeDetail onClose={() => setModalShown(!modalShown)} recipe={recipe} />
-                          </ModalContent>
-                          <ModalTrigger>
-                              <RecipeCard recipe={recipe} />
-                          </ModalTrigger>
-                      </Modal>
-                  ))
-                : 'No data'}
+            {data.length > 0 ? (
+                data.map(recipe => (
+                    <Modal modal={modalShown} onOpenChange={setModalShown} key={recipe.id}>
+                        <ModalContent
+                            headerButtons={
+                                <IconButton
+                                    onClick={() => {
+                                        setIsCopied(true);
+                                        navigator.clipboard.writeText(`${window.location}recipes/${recipe.id}`);
+                                    }}
+                                >
+                                    <Icon type={isCopied ? Icon.Types.ARROW_DOWN : Icon.Types.COPY} />
+                                </IconButton>
+                            }
+                            title={recipe.name}
+                        >
+                            <RecipeDetail onClose={() => setModalShown(!modalShown)} recipe={recipe} />
+                        </ModalContent>
+                        <ModalTrigger>
+                            <RecipeCard recipe={recipe} />
+                        </ModalTrigger>
+                    </Modal>
+                ))
+            ) : (
+                <NoSearchResults>
+                    <Icon type={Icon.Types.SEARCH_ICON} size={'large'} />
+                    <Typography size={'xl'} weight={'semibold'} color={'lowContrast'}>
+                        Sorry we couldnt find anything.
+                    </Typography>
+                </NoSearchResults>
+            )}
         </RecipeListBox>
     );
 };

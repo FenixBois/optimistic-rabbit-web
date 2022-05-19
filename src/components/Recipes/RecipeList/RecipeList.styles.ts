@@ -12,3 +12,11 @@ export const RecipeListBox = styled('div', {
         textDecoration: 'none',
     },
 });
+
+export const NoSearchResults = styled('div', {
+    display: 'flex',
+    color: '$lowContrastText',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 20,
+});
