@@ -13,6 +13,7 @@ interface RecipePageTypeProps {
 const RecipePage = () => {
     const router = useRouter();
     const { recipeId } = router.query;
+    console.log(recipeId);
     const { data: recipe, error } = useSWR<Recipe>(`${api}/recipe/${recipeId}`, fetcher);
 
     if (error) return <div>failed to load</div>;

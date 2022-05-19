@@ -18,10 +18,13 @@ interface RecipeDetailProps {
 export const RecipeDetail = ({ recipe, onClose }: RecipeDetailProps) => {
     const [tagsFilters] = useAtom(tagFiltersAtom);
 
-    const { data: recipes, mutate } = useSWR<Recipe[]>(['recipes', serialize(tagsFilters)], () =>
-        fetcher(`${api}/recipes`),
+    const {
+        data: recipes,
+        error,
+        mutate,
+    } = useSWR<Recipe[]>(['recipes', serialize(tagsFilters)], () =>
+        fetcher(`${api}/recipes/?`, serialize(tagsFilters)),
     );
-
     const router = useRouter();
 
     const onDelete = async (recipeId: Recipe['id']) => {
@@ -30,9 +33,6 @@ export const RecipeDetail = ({ recipe, onClose }: RecipeDetailProps) => {
                 method: 'DELETE',
             });
         };
-
-        onClose ? onClose() : await router.push('/', undefined, { scroll: false });
-        await mutate();
 
         await toast.promise(
             deleteRecipe(),
@@ -45,6 +45,8 @@ export const RecipeDetail = ({ recipe, onClose }: RecipeDetailProps) => {
                 position: 'top-right',
             },
         );
+        await mutate();
+        onClose ? onClose() : await router.push('/', undefined, { scroll: false });
     };
     const [servings, setServings] = useState(1);
 

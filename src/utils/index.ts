@@ -1,5 +1,6 @@
 export const fetcher = (url: string, queryParams: string = '') => {
     // Example fetch to demonstrate the logic
+    console.log(queryParams);
     return fetch(url + queryParams).then(res => res.json());
 };
 

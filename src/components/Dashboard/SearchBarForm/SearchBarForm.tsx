@@ -26,6 +26,7 @@ export function SearchBarForm({ css }: SearchBarFormProps) {
                 delete filters[key];
             }
         });
+
         setTagsFilter(filters);
     };
 

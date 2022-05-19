@@ -9,15 +9,23 @@ import { RecipeDetail } from '../RecipeDetail';
 import { useAtom } from 'jotai';
 import { searchFilterAtom, tagFiltersAtom } from '../../Dashboard/atoms';
 import Fuse from 'fuse.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const RecipeList = () => {
     const [searchFilter] = useAtom(searchFilterAtom);
     const [tagsFilters] = useAtom(tagFiltersAtom);
     const [modalShown, setModalShown] = useState(false);
+    const [isCopied, setIsCopied] = useState(false);
     const { data: recipes, error } = useSWR<Recipe[]>(['recipes', serialize(tagsFilters)], () =>
-        fetcher(`${api}/recipes`),
+        fetcher(`${api}/recipes/?`, serialize(tagsFilters)),
     );
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsCopied(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, [isCopied]);
 
     const options = {
         keys: ['name', 'reference'],
@@ -30,7 +38,7 @@ export const RecipeList = () => {
     if (!recipes) return <div>loading...</div>;
 
     const data = searchFilter ? result : recipes;
-    console.log(modalShown);
+
     return (
         <RecipeListBox>
             {data.length > 0
@@ -39,11 +47,12 @@ export const RecipeList = () => {
                           <ModalContent
                               headerButtons={
                                   <IconButton
-                                      onClick={() =>
-                                          navigator.clipboard.writeText(`${window.location}recipes/${recipe.id}`)
-                                      }
+                                      onClick={() => {
+                                          setIsCopied(true);
+                                          navigator.clipboard.writeText(`${window.location}recipes/${recipe.id}`);
+                                      }}
                                   >
-                                      <Icon type={Icon.Types.COPY} />
+                                      <Icon type={isCopied ? Icon.Types.ARROW_DOWN : Icon.Types.COPY} />
                                   </IconButton>
                               }
                               title={recipe.name}
