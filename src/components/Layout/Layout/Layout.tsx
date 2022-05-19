@@ -14,7 +14,7 @@ export function Layout({ children }: LayoutProps) {
     return (
         <>
             <Head>
-                <title>Optimistic Rabbit Cookbook</title>
+                <title>FandomNoms</title>
             </Head>
             <Page>{children}</Page>
             <Footer />
