@@ -2,7 +2,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Button, Input, Select, SelectItem, Typography } from 'components/UI';
 
 import uniqid from 'uniqid';
-import { DevTool } from '@hookform/devtools';
 
 import type { CreateRecipeFormValues } from './types';
 import { TagsData } from './types';
@@ -57,6 +56,7 @@ export function CreateRecipeForm() {
                         placeholder={'45'}
                         register={register}
                         name={'time'}
+                        htmlType={'number'}
                         rules={{ valueAsNumber: true }}
                         label={'Time to prepare (in minutes)'}
                     />
@@ -102,7 +102,6 @@ export function CreateRecipeForm() {
                     Create recipe
                 </Button>
             </Form>
-            <DevTool control={control} />
         </FormProvider>
     );
 }
