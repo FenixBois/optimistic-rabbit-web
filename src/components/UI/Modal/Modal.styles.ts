@@ -26,6 +26,7 @@ export const Header = styled('div', {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    textTransform: 'capitalize', // Makes the name of the recipe capitalized
 
     paddingBottom: 15,
 });

@@ -45,7 +45,7 @@ export const { styled, css, getCssText, config } = createStitches({
         },
         radii: {
             inputBorderRadius: '15px',
-            smallInputBorderRadius: '7px',
+            smallInputBorderRadius: '10px',
             largeBorderRadius: '20px',
         },
         fontWeights: {
@@ -87,7 +87,8 @@ export const { styled, css, getCssText, config } = createStitches({
 
 export const darkTheme = createTheme({
     colors: {
-        error: '#db4324',
+        dangerSolid: '#db4324',
+        dangerSolidHover: '#ca3214',
         success: '#46a758',
 
         appBackground: '#fefdfb', // app background
@@ -116,7 +117,7 @@ export const darkTheme = createTheme({
 
 const GlobalStyles = globalCss({
     '*': { fontFamily: '$poppins' },
-    html: { fontSize: 14 },
+    html: { fontSize: 14, backgroundColor: '$appBackground' },
 });
 
 GlobalStyles();

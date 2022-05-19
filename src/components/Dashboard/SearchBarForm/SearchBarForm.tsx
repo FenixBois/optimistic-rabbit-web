@@ -3,8 +3,14 @@ import { Input, Select, SelectItem } from 'components/UI';
 import { DROPDOWN_DATA } from './SearchBarFormData';
 import { SearchBarFormStyled, SearchInputBox, SelectContainerStyled } from './SearchBarForm.styles';
 import { CreateRecipeModal } from 'components/Recipes';
+import { DevTool } from '@hookform/devtools';
+import { CSS } from '@stitches/react';
 
-export function SearchBarForm() {
+export interface SearchBarFormProps {
+    css?: CSS;
+}
+
+export function SearchBarForm({ css }: SearchBarFormProps) {
     const { handleSubmit, register, control } = useForm({ mode: 'onChange' });
 
     const onSubmit = (data: any) => {
@@ -12,7 +18,7 @@ export function SearchBarForm() {
     };
 
     return (
-        <SearchBarFormStyled onSubmit={handleSubmit(onSubmit)}>
+        <SearchBarFormStyled onSubmit={handleSubmit(onSubmit)} css={css}>
             <SearchInputBox>
                 <Input register={register} name={'bartok'} type={'primary'} placeholder={'Search for a recipe!'} />
                 <CreateRecipeModal />

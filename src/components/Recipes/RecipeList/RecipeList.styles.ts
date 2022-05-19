@@ -6,4 +6,9 @@ export const RecipeListBox = styled('div', {
     gap: 10,
     marginBottom: 50,
     width: '100%',
+    textTransform: 'capitalize', // Makes the name of the recipe capitalized
+
+    '& a': {
+        textDecoration: 'none',
+    },
 });
