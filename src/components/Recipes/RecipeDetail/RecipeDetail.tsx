@@ -11,7 +11,12 @@ export const RecipeDetail = ({ recipe }: RecipeDetailProps) => {
     const [servings, setServings] = useState(1);
     return (
         <RecipeDetailStyled>
-            <PillContainer recipe={recipe} />
+            <div>
+                <Typography size={'lg'} weight={'regular'} css={{ marginBottom: 10 }}>
+                    {recipe.reference}
+                </Typography>
+                <PillContainer recipe={recipe} />
+            </div>
             <IngredientsStyled>
                 <Typography size={'xl'} weight={'semibold'}>
                     Ingredients
