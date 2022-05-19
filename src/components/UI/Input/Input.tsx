@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { InputStyled, InputWrapper, LabelWrapper, Prefix, Suffix } from './Input.styles';
 
 import type { CSS, VariantProps } from '@stitches/react';
-import type { Path, UseFormRegister } from 'react-hook-form';
+import type { Path, RegisterOptions, UseFormRegister } from 'react-hook-form';
 import { Typography } from '../Typography';
 
 export interface InputProps<TFormItem> extends VariantProps<typeof InputWrapper> {
@@ -11,12 +11,14 @@ export interface InputProps<TFormItem> extends VariantProps<typeof InputWrapper>
     as?: 'textarea' | 'input';
     register: UseFormRegister<TFormItem>;
     css?: CSS;
+    htmlType?: 'text' | 'number' | 'submit';
     placeholder?: string;
     disabled?: boolean;
     id?: string;
     label?: string;
     rows?: number;
     name: Path<TFormItem>;
+    rules?: RegisterOptions;
 }
 
 export function Input<TFormItem>({
@@ -25,7 +27,9 @@ export function Input<TFormItem>({
     placeholder,
     disabled,
     register,
+    htmlType = 'text',
     type,
+    rules,
     id,
     label,
     css,
@@ -45,14 +49,15 @@ export function Input<TFormItem>({
                 {prefix ? <Prefix>{prefix}</Prefix> : null}
                 <InputStyled
                     css={css}
-                    type={type}
+                    color={type}
                     id={id}
                     rows={rows}
                     disabled={disabled}
                     placeholder={placeholder}
                     as={as}
-                    {...register(name)}
+                    {...register(name, rules)}
                     {...props}
+                    type={htmlType}
                 />
                 {suffix ? <Suffix>{suffix}</Suffix> : null}
             </InputWrapper>

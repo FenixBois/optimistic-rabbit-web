@@ -60,7 +60,7 @@ export const InputStyled = styled('input', {
     },
 
     variants: {
-        type: {
+        color: {
             disabled: {},
             primary: {
                 fontSize: '$lg',
@@ -76,7 +76,7 @@ export const InputStyled = styled('input', {
     },
 
     defaultVariants: {
-        type: 'secondary',
+        color: 'secondary',
     },
 });
 

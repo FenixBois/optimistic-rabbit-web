@@ -2,11 +2,11 @@ import type { DifficultyType, MediaType, TasteType } from 'types';
 import { Difficulty, Media, RecipeUnits, TagsNames, Taste } from 'types';
 
 export interface CreateRecipeFormValues extends TagValue {
-    title: string;
-    timeToPrepare: number;
+    name: string;
+    time: number;
 
     ingredients: IngredientValue[];
-    instructions: string;
+    description: string;
 }
 
 export interface TagValue {

@@ -3,7 +3,6 @@ import { Input, Select, SelectItem } from 'components/UI';
 import { DROPDOWN_DATA } from './SearchBarFormData';
 import { SearchBarFormStyled, SearchInputBox, SelectContainerStyled } from './SearchBarForm.styles';
 import { CreateRecipeModal } from 'components/Recipes';
-import { DevTool } from '@hookform/devtools';
 
 export function SearchBarForm() {
     const { handleSubmit, register, control } = useForm({ mode: 'onChange' });
@@ -29,7 +28,6 @@ export function SearchBarForm() {
                     </Select>
                 ))}
             </SelectContainerStyled>
-            <DevTool control={control} />
         </SearchBarFormStyled>
     );
 }

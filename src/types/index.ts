@@ -23,7 +23,7 @@ interface Ingredients {
 
 export const Difficulty = {
     Easy: 'easy',
-    Normal: 'normal',
+    Normal: 'medium',
     Hard: 'hard',
 } as const;
 
@@ -48,9 +48,9 @@ export const Media = {
 export type MediaType = typeof Media[keyof typeof Media];
 
 export const RecipeUnits = {
-    ml: 'ml',
-    g: 'g',
-    pieces: 'pieces',
+    ml: 'ML',
+    g: 'G',
+    pieces: 'PIECES',
 } as const;
 
 export type RecipeUnits = typeof RecipeUnits[keyof typeof RecipeUnits];

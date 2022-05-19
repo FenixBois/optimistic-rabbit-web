@@ -13,20 +13,18 @@ export function NewIngredientGroup() {
         control,
     });
 
-    console.log(fields);
-
     const dropDownUnits = [
         {
             id: 1,
-            description: 'g',
+            description: 'G',
         },
         {
             id: 2,
-            description: 'ml',
+            description: 'ML',
         },
         {
             id: 3,
-            description: 'pieces',
+            description: 'PIECES',
         },
     ];
 
@@ -43,8 +41,10 @@ export function NewIngredientGroup() {
                             placeholder={'Tomatoes'}
                         />
                         <Input
+                            htmlType="number"
                             label={index === 0 ? 'Amount' : undefined}
                             register={register}
+                            rules={{ valueAsNumber: true }}
                             name={`ingredients.${index}.amount` as const}
                             type={'secondary'}
                             placeholder={'3'}
