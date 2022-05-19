@@ -4,7 +4,7 @@ import { forwardRef, ReactNode } from 'react';
 import { Icon } from '../Icon';
 import { Typography } from '../Typography';
 
-import { ButtonsBox, DialogContent, Header, StyledOverlay, Trigger } from './Modal.styles';
+import { ButtonsBox, DialogContent, Header, StyledOverlay, StyledTrigger } from './Modal.styles';
 import { IconButtonStyled } from '../IconButton';
 
 interface ModalProps {
@@ -46,4 +46,4 @@ export const ModalContent = forwardRef<HTMLDivElement, ModalProps>(
 ModalContent.displayName = 'ModalContent';
 
 export const Modal = DialogPrimitive.Root;
-export const ModalTrigger = Trigger;
+export const ModalTrigger = StyledTrigger;

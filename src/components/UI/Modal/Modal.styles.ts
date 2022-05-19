@@ -1,5 +1,5 @@
 import { styled } from 'styles';
-import { Content } from '@radix-ui/react-dialog';
+import { Content, Trigger } from '@radix-ui/react-dialog';
 import { keyframes } from '@stitches/react';
 
 const overlayShow = keyframes({
@@ -55,7 +55,7 @@ export const DialogContent = styled(Content, {
     '&:focus': { outline: 'none' },
 });
 
-export const Trigger = styled(DialogPrimitive.Trigger, {
+export const StyledTrigger = styled(Trigger, {
     border: 'none',
     backgroundColor: 'transparent',
 });
