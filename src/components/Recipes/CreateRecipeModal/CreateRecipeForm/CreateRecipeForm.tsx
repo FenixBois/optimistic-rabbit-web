@@ -2,6 +2,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Button, Input, Select, SelectItem, Typography } from 'components/UI';
 
 import uniqid from 'uniqid';
+import { DevTool } from '@hookform/devtools';
 
 import type { CreateRecipeFormValues } from './types';
 import { TagsData } from './types';
@@ -36,7 +37,6 @@ export function CreateRecipeForm() {
             taste: recipe.taste.toUpperCase(),
             servings: 2,
             vegetarian: false,
-            reference: 'asd',
         };
 
         const createdUser = await fetch(`${api}/recipe`, {
@@ -52,13 +52,19 @@ export function CreateRecipeForm() {
         <FormProvider {...methods}>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <InfoBox>
-                    <Input placeholder={'Amazing chicken'} register={register} name={'name'} label={'Recipe title'} />{' '}
+                    <Input placeholder={'Amazing chicken'} register={register} name={'name'} label={'Recipe title'} />
                     <Input
                         placeholder={'45'}
                         register={register}
                         name={'time'}
                         rules={{ valueAsNumber: true }}
                         label={'Time to prepare (in minutes)'}
+                    />
+                    <Input
+                        placeholder={'Legend of Zelda'}
+                        register={register}
+                        name={'reference'}
+                        label={'Name of the book / movie / game '}
                     />
                 </InfoBox>
                 <TagsWrapper>
@@ -96,6 +102,7 @@ export function CreateRecipeForm() {
                     Create recipe
                 </Button>
             </Form>
+            <DevTool control={control} />
         </FormProvider>
     );
 }

@@ -4,6 +4,7 @@ import { Difficulty, Media, RecipeUnits, TagsNames, Taste } from 'types';
 export interface CreateRecipeFormValues extends TagValue {
     name: string;
     time: number;
+    reference: string;
 
     ingredients: IngredientValue[];
     description: string;

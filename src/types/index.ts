@@ -34,7 +34,7 @@ export const Taste = {
     Bitter: 'bitter',
     Spicy: 'spicy',
     Sour: 'sour',
-    Salt: 'salt',
+    Salty: 'salty',
 } as const;
 
 export type TasteType = typeof Taste[keyof typeof Taste];
