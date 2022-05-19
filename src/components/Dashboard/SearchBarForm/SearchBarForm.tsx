@@ -1,10 +1,13 @@
 import { useForm } from 'react-hook-form';
-import { Select, SelectItem } from 'components/UI';
-import { DROPDOWN_DATA } from './SearchBarFormData';
-import { SearchBarFormStyled, SearchInputBox, SelectContainerStyled } from './SearchBarForm.styles';
+import { useAtom } from 'jotai';
+import type { CSS } from '@stitches/react';
+
 import { CreateRecipeModal } from 'components/Recipes';
-import { CSS } from '@stitches/react';
-import { useState } from 'react';
+import { Input, Select, SelectItem } from 'components/UI';
+
+import { DROPDOWN_DATA } from './SearchBarFormData';
+import { SearchBar, SearchInputBox, SelectContainerStyled } from './SearchBarForm.styles';
+import { searchFilterAtom } from '../atoms';
 
 export interface SearchBarFormProps {
     css?: CSS;
@@ -12,16 +15,16 @@ export interface SearchBarFormProps {
 
 export function SearchBarForm({ css }: SearchBarFormProps) {
     const { handleSubmit, register, control } = useForm({ mode: 'onChange' });
-    const [recipeName, setRecipeName] = useState('');
-
-    const onSubmit = (data: any) => {
-        console.log(data);
-    };
+    const [, setSearchFilter] = useAtom(searchFilterAtom);
 
     return (
-        <SearchBarFormStyled onSubmit={handleSubmit(onSubmit)} css={css}>
+        <SearchBar css={css}>
             <SearchInputBox>
-                {/*<Input onChange={(e) => setRecipeName(e.target.value)} type={'primary'} placeholder={'Search for a recipe!'} />*/}
+                <Input
+                    onChange={e => setSearchFilter(e.target.value)}
+                    type={'primary'}
+                    placeholder={'Search for a recipe!'}
+                />
             </SearchInputBox>
             <CreateRecipeModal />
             <SelectContainerStyled>
@@ -41,6 +44,6 @@ export function SearchBarForm({ css }: SearchBarFormProps) {
                     </Select>
                 ))}
             </SelectContainerStyled>
-        </SearchBarFormStyled>
+        </SearchBar>
     );
 }

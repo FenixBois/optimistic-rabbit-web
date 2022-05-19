@@ -11,7 +11,7 @@ export const SearchInputBox = styled('div', {
     },
 });
 
-export const SearchBarFormStyled = styled('form', {
+export const SearchBar = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     gap: 5,

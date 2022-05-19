@@ -6,18 +6,29 @@ import { Recipe } from 'types';
 import { api } from 'config';
 import { Icon, IconButton, Modal, ModalContent, ModalTrigger } from 'components/UI';
 import { RecipeDetail } from '../RecipeDetail';
-
-interface RecipeListProps {}
+import { useAtom } from 'jotai';
+import { searchFilterAtom } from '../../Dashboard/atoms';
+import Fuse from 'fuse.js';
 
 export const RecipeList = () => {
     const { data: recipes, error, mutate } = useSWR<Recipe[]>(`${api}/recipes`, fetcher);
+    const [searchFilter] = useAtom(searchFilterAtom);
+    const options = {
+        keys: ['name', 'reference'],
+    };
+
+    const fuse = new Fuse(recipes ? recipes : [], options);
+    const result = fuse.search(searchFilter).map(item => item.item);
+
     if (error) return <div>failed to load</div>;
     if (!recipes) return <div>loading...</div>;
 
+    const data = searchFilter ? result : recipes;
+
     return (
         <RecipeListBox>
-            {recipes.length > 0
-                ? recipes.map(recipe => (
+            {data.length > 0
+                ? data.map(recipe => (
                       <Modal key={recipe.id}>
                           <ModalContent
                               headerButtons={

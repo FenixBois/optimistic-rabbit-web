@@ -1,15 +1,17 @@
-import type { ReactNode } from 'react';
+import type { InputHTMLAttributes, ReactNode } from 'react';
 import { InputStyled, InputWrapper, LabelWrapper, Prefix, Suffix } from './Input.styles';
 
 import type { CSS, VariantProps } from '@stitches/react';
 import type { Path, RegisterOptions, UseFormRegister } from 'react-hook-form';
 import { Typography } from '../Typography';
 
-export interface InputProps<TFormItem> extends VariantProps<typeof InputWrapper> {
+type NativeInputAttributes = Pick<InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
+
+export interface InputProps<TFormItem> extends VariantProps<typeof InputWrapper>, NativeInputAttributes {
     suffix?: ReactNode;
     prefix?: ReactNode;
     as?: 'textarea' | 'input';
-    register: UseFormRegister<TFormItem>;
+    register?: UseFormRegister<TFormItem>;
     css?: CSS;
     htmlType?: 'text' | 'number' | 'submit';
     placeholder?: string;
@@ -17,7 +19,7 @@ export interface InputProps<TFormItem> extends VariantProps<typeof InputWrapper>
     id?: string;
     label?: string;
     rows?: number;
-    name: Path<TFormItem>;
+    name?: Path<TFormItem>;
     rules?: RegisterOptions;
 }
 
@@ -55,7 +57,7 @@ export function Input<TFormItem>({
                     disabled={disabled}
                     placeholder={placeholder}
                     as={as}
-                    {...register(name, rules)}
+                    {...(register && name && register(name, rules))}
                     {...props}
                     type={htmlType}
                 />
