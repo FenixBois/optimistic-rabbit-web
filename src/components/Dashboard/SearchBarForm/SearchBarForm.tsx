@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { Input, Select, SelectItem } from 'components/UI';
+import { Select, SelectItem } from 'components/UI';
 import { DROPDOWN_DATA } from './SearchBarFormData';
 import { SearchBarFormStyled, SearchInputBox, SelectContainerStyled } from './SearchBarForm.styles';
 import { CreateRecipeModal } from 'components/Recipes';
-import { DevTool } from '@hookform/devtools';
 import { CSS } from '@stitches/react';
+import { useState } from 'react';
 
 export interface SearchBarFormProps {
     css?: CSS;
@@ -12,6 +12,7 @@ export interface SearchBarFormProps {
 
 export function SearchBarForm({ css }: SearchBarFormProps) {
     const { handleSubmit, register, control } = useForm({ mode: 'onChange' });
+    const [recipeName, setRecipeName] = useState('');
 
     const onSubmit = (data: any) => {
         console.log(data);
@@ -20,15 +21,21 @@ export function SearchBarForm({ css }: SearchBarFormProps) {
     return (
         <SearchBarFormStyled onSubmit={handleSubmit(onSubmit)} css={css}>
             <SearchInputBox>
-                <Input register={register} name={'bartok'} type={'primary'} placeholder={'Search for a recipe!'} />
-                <CreateRecipeModal />
+                {/*<Input onChange={(e) => setRecipeName(e.target.value)} type={'primary'} placeholder={'Search for a recipe!'} />*/}
             </SearchInputBox>
+            <CreateRecipeModal />
             <SelectContainerStyled>
-                {DROPDOWN_DATA.map(dropdown => (
-                    <Select key={dropdown.id} type={'primary'} control={control} name={'barrtoksmradok'}>
-                        {dropdown.options.map(option => (
-                            <SelectItem key={option.id} value={option.description}>
-                                {option.description}
+                {DROPDOWN_DATA.map((dropdown, index) => (
+                    <Select
+                        key={index}
+                        type={'primary'}
+                        control={control}
+                        name={dropdown.name}
+                        defaultValue={dropdown.label}
+                    >
+                        {dropdown.options.map((option, index) => (
+                            <SelectItem key={index} value={option}>
+                                {option}
                             </SelectItem>
                         ))}
                     </Select>

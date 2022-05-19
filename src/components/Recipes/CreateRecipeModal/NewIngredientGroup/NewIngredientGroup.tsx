@@ -48,7 +48,7 @@ export function NewIngredientGroup() {
                             name={`ingredients.${index}.amount` as const}
                             type={'secondary'}
                             placeholder={'3'}
-                            css={{ width: 30 }}
+                            css={{ width: 50 }}
                         />
                         <Select control={control} name={`ingredients.${index}.unit` as const} type={'secondary'}>
                             {dropDownUnits.map(unit => (

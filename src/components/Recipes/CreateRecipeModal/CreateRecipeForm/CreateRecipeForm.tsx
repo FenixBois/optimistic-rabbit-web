@@ -47,7 +47,6 @@ export function CreateRecipeForm() {
             taste: recipe.taste.toUpperCase(),
             servings: 2,
             vegetarian: false,
-            reference: 'asd',
         };
 
         const createdUser = await fetch(`${api}/recipe`, {
@@ -63,13 +62,20 @@ export function CreateRecipeForm() {
         <FormProvider {...methods}>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <InfoBox>
-                    <Input placeholder={'Amazing chicken'} register={register} name={'name'} label={'Recipe title'} />{' '}
+                    <Input placeholder={'Amazing chicken'} register={register} name={'name'} label={'Recipe title'} />
                     <Input
                         placeholder={'45'}
                         register={register}
                         name={'time'}
+                        htmlType={'number'}
                         rules={{ valueAsNumber: true }}
                         label={'Time to prepare (in minutes)'}
+                    />
+                    <Input
+                        placeholder={'Legend of Zelda'}
+                        register={register}
+                        name={'reference'}
+                        label={'Name of the book / movie / game '}
                     />
                 </InfoBox>
                 <TagsWrapper>
