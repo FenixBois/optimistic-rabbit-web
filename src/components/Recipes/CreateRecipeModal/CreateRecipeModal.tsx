@@ -4,7 +4,7 @@ import { CreateRecipeForm } from './CreateRecipeForm';
 export const CreateRecipeModal = () => {
     return (
         <>
-            <Modal modal={false}>
+            <Modal allowPinchZoom={false} modal={false}>
                 <ModalContent title={'Create a recipe'}>
                     <CreateRecipeForm />
                 </ModalContent>
