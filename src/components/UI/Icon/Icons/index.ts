@@ -6,3 +6,4 @@ export * from './ArrowDown';
 export * from './Minus';
 export * from './Close';
 export * from './Plus';
+export * from './Copy';

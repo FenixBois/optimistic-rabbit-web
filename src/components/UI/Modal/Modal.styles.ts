@@ -1,4 +1,5 @@
 import { styled } from 'styles';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Content, Overlay } from '@radix-ui/react-dialog';
 import { keyframes } from '@stitches/react';
 
@@ -52,4 +53,14 @@ export const DialogContent = styled(Content, {
         animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
     },
     '&:focus': { outline: 'none' },
+});
+
+export const Trigger = styled(DialogPrimitive.Trigger, {
+    border: 'none',
+    backgroundColor: 'transparent',
+});
+
+export const ButtonsBox = styled('div', {
+    display: 'flex',
+    gap: 10,
 });

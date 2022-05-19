@@ -10,7 +10,7 @@ export interface PillContainerProps {
 
 export const PillContainer = ({ recipe, css }: PillContainerProps) => {
     const tags = [`${recipe?.time} minutes`, recipe?.difficulty, recipe?.taste, recipe?.media];
-    if (recipe?.vegetarian) {
+    if (recipe.vegetarian) {
         tags.push('Vegetarian');
     }
 

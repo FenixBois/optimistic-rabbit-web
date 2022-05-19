@@ -1,5 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button, Input, Select, SelectItem, Typography } from 'components/UI';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import uniqid from 'uniqid';
 
@@ -10,11 +11,16 @@ import { NewIngredientGroup } from '../NewIngredientGroup';
 import { fetcher } from 'utils';
 import { api } from 'config';
 import useSWR from 'swr';
+import * as z from 'zod';
 
 export function CreateRecipeForm() {
     const { data: recipes, mutate } = useSWR(`${api}/recipes`, fetcher);
+    const schema = z.object({
+        name: z.string().min(1, { message: 'Required' }),
+    });
 
     const methods = useForm<CreateRecipeFormValues>({
+        resolver: zodResolver(schema),
         mode: 'onChange',
         defaultValues: {
             ingredients: [
@@ -26,7 +32,12 @@ export function CreateRecipeForm() {
             ],
         },
     });
-    const { control, register, handleSubmit } = methods;
+    const {
+        control,
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = methods;
 
     const onSubmit = async (recipe: CreateRecipeFormValues) => {
         const newRecipe = {
@@ -92,7 +103,7 @@ export function CreateRecipeForm() {
                     name={'description'}
                     label={'Preparation instructions'}
                 />
-                <Button css={{ alignSelf: 'start' }} size={'large'}>
+                <Button disabled={!!errors} css={{ alignSelf: 'start' }} size={'large'}>
                     Create recipe
                 </Button>
             </Form>

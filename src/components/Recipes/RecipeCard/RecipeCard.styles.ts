@@ -4,6 +4,8 @@ export const ContainerStyled = styled('div', {
     width: '100%',
     boxSizing: 'border-box',
 
+    textAlign: 'start',
+
     borderRadius: 20,
     border: 'solid 4px $greyBorder',
 

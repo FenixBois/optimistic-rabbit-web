@@ -1,14 +1,34 @@
 import { Button, PillContainer, Stepper, Typography } from 'components/UI';
 import { DirectionsStyled, IngredientListStyled, IngredientsStyled, RecipeDetailStyled } from './RecipeDetail.styles';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { Recipe } from 'types';
+import { api } from 'config';
+import useSWR from 'swr';
+import { fetcher } from 'utils';
+import { useRouter } from 'next/router';
 
 interface RecipeDetailProps {
     recipe: Recipe;
 }
 
 export const RecipeDetail = ({ recipe }: RecipeDetailProps) => {
+    const { data: recipes, mutate } = useSWR<Recipe[]>(`${api}/recipes`, fetcher);
+
+    const router = useRouter();
+
+    const onDelete = async (e: SyntheticEvent, recipeId: Recipe['id']) => {
+        e.preventDefault();
+
+        await fetch(`${api}/recipe/${recipeId}`, {
+            method: 'DELETE',
+        });
+        if (recipes) {
+            await mutate(recipes.filter(recipe => recipe.id !== recipeId));
+        }
+        await router.push('/', undefined, { scroll: false });
+    };
     const [servings, setServings] = useState(1);
+
     return (
         <RecipeDetailStyled>
             <PillContainer recipe={recipe} />
@@ -41,7 +61,7 @@ export const RecipeDetail = ({ recipe }: RecipeDetailProps) => {
                     {recipe.description}
                 </Typography>
             </DirectionsStyled>
-            <Button css={{ alignSelf: 'start' }} color={'danger'}>
+            <Button onClick={e => onDelete(e, recipe.id)} css={{ alignSelf: 'start' }} color={'danger'}>
                 Delete recipe
             </Button>
         </RecipeDetailStyled>
