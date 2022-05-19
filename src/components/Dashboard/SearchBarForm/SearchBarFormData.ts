@@ -1,38 +1,21 @@
-const dropDownOptions = [
-    {
-        id: 1,
-        description: 'Select 1',
-    },
-    {
-        id: 2,
-        description: 'Select 2',
-    },
-    {
-        id: 3,
-        description: 'Select 3',
-    },
-];
+const difficultyOptions = ['Easy', 'Medium', 'Hard'];
+const tasteOptions = ['Sweet', 'Salty', 'Sour', 'Bitter', 'Spicy'];
+const mediaOptions = ['Movie', 'Book', 'Game'];
 
 export const DROPDOWN_DATA = [
     {
-        id: 1,
-        label: 'Dropdown 1',
-        options: dropDownOptions,
-        selectedOption: dropDownOptions[0],
-        name: 'test1',
+        label: 'Difficulty',
+        options: difficultyOptions,
+        name: 'difficulty',
     },
     {
-        id: 2,
-        label: 'Dropdown 2',
-        options: dropDownOptions,
-        selectedOption: dropDownOptions[0],
-        name: 'test2',
+        label: 'Taste',
+        options: tasteOptions,
+        name: 'taste',
     },
     {
-        id: 3,
-        label: 'Dropdown 3',
-        options: dropDownOptions,
-        selectedOption: dropDownOptions[0],
-        name: 'test3',
+        label: 'Type of media',
+        options: mediaOptions,
+        name: 'media',
     },
 ];
