@@ -1,5 +1,5 @@
 import { styled } from 'styles';
-import { Content, Overlay } from '@radix-ui/react-dialog';
+import { Content } from '@radix-ui/react-dialog';
 import { keyframes } from '@stitches/react';
 
 const overlayShow = keyframes({
@@ -12,7 +12,7 @@ const contentShow = keyframes({
     '100%': { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
 });
 
-export const StyledOverlay = styled(Overlay, {
+export const StyledOverlay = styled('div', {
     backgroundColor: '$overlayColor',
     position: 'fixed',
     inset: 0,
@@ -45,7 +45,7 @@ export const DialogContent = styled(Content, {
     width: '90vw',
     maxWidth: '700px',
     maxHeight: '85vh',
-    overflowY: "auto",
+    overflowY: 'auto',
 
     py: '33px',
     px: '45px',
