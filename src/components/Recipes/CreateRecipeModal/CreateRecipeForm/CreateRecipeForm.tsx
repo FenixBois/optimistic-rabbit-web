@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import useSWR from 'swr';
 import * as z from 'zod';
-import { Button, Input, Select, SelectItem, Typography } from 'components/UI';
+import { Button, Input, Select, SelectItem, Typography ,Switch} from 'components/UI';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import uniqid from 'uniqid';
@@ -151,8 +151,14 @@ export function CreateRecipeForm({ onClose }: CreateRecipeFormType) {
                         ))}
                     </TagsBox>
                 </TagsWrapper>
-
                 <NewIngredientGroup />
+                <div>
+                    <Typography>Is your meal vegetarian?</Typography>
+                    <Switch
+                        iconOn={<Icon type={Icon.Types.SUN_ICON} />}
+                        iconOff={<Icon type={Icon.Types.MOON_ICON} />}
+                    />
+                </div>
                 <Input
                     as={'textarea'}
                     register={register}

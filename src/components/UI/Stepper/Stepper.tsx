@@ -16,28 +16,32 @@ export function Stepper({ label, count, onIncrease, onDecrease }: StepperProps) 
             <Typography>
                 {label}: {count}
             </Typography>
-            <IconButton
-                size={'normal'}
-                color={'primaryLight'}
-                onClick={(e: { preventDefault: () => void }) => {
-                    e.preventDefault();
-                    if (count <= 1) return;
-                    onDecrease();
-                }}
-            >
-                <Icon label={'Remove'} size={'medium'} type={Icon.Types.MINUS} />
-            </IconButton>
-            <IconButton
-                size={'normal'}
-                color={'primaryLight'}
-                onClick={(e: { preventDefault: () => void }) => {
-                    e.preventDefault();
-                    if (count >= 10) return;
-                    onIncrease();
-                }}
-            >
-                <Icon label={'Remove'} size={'medium'} type={Icon.Types.PLUS} />
-            </IconButton>
+            <span>
+                <IconButton
+                    css={{ width: 24 }}
+                    size={'normal'}
+                    color={'primaryLight'}
+                    onClick={(e: { preventDefault: () => void }) => {
+                        e.preventDefault();
+                        if (count <= 1) return;
+                        onDecrease();
+                    }}
+                >
+                    <Icon label={'Remove'} size={'medium'} type={Icon.Types.MINUS} />
+                </IconButton>
+                <IconButton
+                    css={{ width: 24 }}
+                    size={'normal'}
+                    color={'primaryLight'}
+                    onClick={(e: { preventDefault: () => void }) => {
+                        e.preventDefault();
+                        if (count >= 10) return;
+                        onIncrease();
+                    }}
+                >
+                    <Icon label={'Remove'} size={'medium'} type={Icon.Types.PLUS} />
+                </IconButton>
+            </span>
         </StepperStyled>
     );
 }

@@ -13,8 +13,8 @@ const StyledSwitch = styled(SwitchPrimitive.Root, {
     all: 'unset',
 
     width: 102,
-    height: 46,
-    borderRadius: '$inputBorderRadius',
+    height: '$input',
+    borderRadius: '$smallInputBorderRadius',
     position: 'relative',
     color: 'red',
     backgroundColor: '$primaryElementBackground',
@@ -24,8 +24,8 @@ const StyledThumb = styled(SwitchPrimitive.Thumb, {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    height: '$input',
     width: 45,
-    height: 38,
 
     transition: 'transform 100ms',
     transform: 'translateX(5px)',
@@ -33,7 +33,7 @@ const StyledThumb = styled(SwitchPrimitive.Thumb, {
 
     color: '$primaryHighContrastText',
     backgroundColor: '$primarySolid',
-    borderRadius: '$inputBorderRadius',
+    borderRadius: '$smallInputBorderRadius',
     '&[data-state="checked"]': { transform: 'translateX(52px)' },
 });
 

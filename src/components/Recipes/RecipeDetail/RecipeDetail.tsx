@@ -51,9 +51,6 @@ export const RecipeDetail = ({ recipe, onClose }: RecipeDetailProps) => {
     return (
         <RecipeDetailStyled>
             <div>
-                <Typography size={'lg'} weight={'regular'} css={{ marginBottom: 10 }}>
-                    {recipe.reference}
-                </Typography>
                 <PillContainer recipe={recipe} />
             </div>
             <IngredientsStyled>

@@ -16,6 +16,8 @@ export const { styled, css, getCssText, config } = createStitches({
             dangerSolidHover: '#ca3214',
             success: '#46a758',
 
+            mediaReference: '#ddf3e4',
+
             appBackground: '#fefdfb', // app background
             primaryElementBackground: '#fff4d5', // element background
             primaryElementHover: '#ffecbc', // element hover

@@ -8,7 +8,6 @@ import { Input, Select, SelectItem } from 'components/UI';
 import { DROPDOWN_DATA } from './SearchBarFormData';
 import { SearchBar, SearchInputBox, SelectContainerStyled } from './SearchBarForm.styles';
 import { searchFilterAtom } from '../atoms';
-import { DevTool } from '@hookform/devtools';
 import { tagFiltersAtom } from '../atoms/tagFiltersAtom';
 
 export interface SearchBarFormProps {
@@ -58,7 +57,6 @@ export function SearchBarForm({ css }: SearchBarFormProps) {
                         ))}
                     </Select>
                 ))}
-                <DevTool control={control} />
             </SelectContainerStyled>
         </SearchBar>
     );

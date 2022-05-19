@@ -9,7 +9,7 @@ export interface PillContainerProps {
 }
 
 export const PillContainer = ({ recipe, css }: PillContainerProps) => {
-    const tags = [`${recipe?.time} minutes`, recipe?.difficulty, recipe?.taste, recipe?.media];
+    const tags = [recipe?.reference, `${recipe?.time} minutes`, recipe?.difficulty, recipe?.taste, recipe?.media];
     if (recipe.vegetarian) {
         tags.push('Vegetarian');
     }
@@ -17,7 +17,9 @@ export const PillContainer = ({ recipe, css }: PillContainerProps) => {
     return (
         <PillContainerStyled css={css}>
             {tags.map((tag, index) => (
-                <Pill key={index}>{tag}</Pill>
+                <Pill key={index} type={index === 0 ? 'reference' : 'primary'}>
+                    {tag}
+                </Pill>
             ))}
         </PillContainerStyled>
     );

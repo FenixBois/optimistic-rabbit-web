@@ -5,13 +5,17 @@ export const PillStyled = styled('span', {
     border: 0,
     py: 5,
     px: 15,
-    textTransform: 'lowercase',
+    textTransform: 'capitalize',
 
     variants: {
         type: {
             primary: {
                 backgroundColor: '$primaryElementBackground',
                 color: '$primarySolid',
+            },
+            reference: {
+                backgroundColor: '$mediaReference',
+                color: '$lowContrastText',
             },
         },
     },
