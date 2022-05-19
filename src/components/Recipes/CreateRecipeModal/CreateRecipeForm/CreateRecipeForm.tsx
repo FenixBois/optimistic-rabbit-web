@@ -1,6 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button, Input, Select, SelectItem, Typography } from 'components/UI';
-import { DevTool } from '@hookform/devtools';
 
 import uniqid from 'uniqid';
 
@@ -22,7 +21,7 @@ export function CreateRecipeForm() {
                 {
                     unit: undefined,
                     name: undefined,
-                    amount: undefined,
+                    amount: 'g',
                 },
             ],
         },
@@ -31,48 +30,24 @@ export function CreateRecipeForm() {
 
     const onSubmit = async (recipe: CreateRecipeFormValues) => {
         const newRecipe = {
-            vegetarian: false,
             ...recipe,
             media: recipe.media.toUpperCase(),
             difficulty: recipe.difficulty.toUpperCase(),
             taste: recipe.taste.toUpperCase(),
             servings: 2,
+            vegetarian: false,
             reference: 'asd',
-            time: 12,
         };
 
-        console.log(...recipes, newRecipe);
-        await fetch(`${api}/recipe`, {
+        const createdUser = await fetch(`${api}/recipe`, {
             headers: { 'Content-Type': 'application/json' },
             method: 'POST',
             body: JSON.stringify(newRecipe),
         });
 
-        await mutate({ ...recipes, newRecipe });
+        await mutate([...recipes, createdUser]);
     };
-    // {
-    //     "name": "test",
-    //     "description": "test long text but longer",
-    //     "servings": 2,
-    //     "time": 10,
-    //     "reference": "Random game",
-    //     "difficulty": "MEDIUM",
-    //     "media": "GAME",
-    //     "taste": "SALTY",
-    //     "vegetarian": false,
-    //     "ingredients": [
-    //     {
-    //         "name": "trava zelena",
-    //         "amount": 10,
-    //         "unit": "PIECES"
-    //     },
-    //     {
-    //         "name": "voda",
-    //         "amount": 1000,
-    //         "unit": "ML"
-    //     }
-    // ]
-    // }
+
     return (
         <FormProvider {...methods}>
             <Form onSubmit={handleSubmit(onSubmit)}>
@@ -82,6 +57,7 @@ export function CreateRecipeForm() {
                         placeholder={'45'}
                         register={register}
                         name={'time'}
+                        rules={{ valueAsNumber: true }}
                         label={'Time to prepare (in minutes)'}
                     />
                 </InfoBox>
@@ -120,7 +96,6 @@ export function CreateRecipeForm() {
                     Create recipe
                 </Button>
             </Form>
-            <DevTool control={control} />
         </FormProvider>
     );
 }

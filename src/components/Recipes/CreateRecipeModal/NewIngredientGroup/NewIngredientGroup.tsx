@@ -16,15 +16,15 @@ export function NewIngredientGroup() {
     const dropDownUnits = [
         {
             id: 1,
-            description: 'G',
+            description: 'g',
         },
         {
             id: 2,
-            description: 'ML',
+            description: 'ml',
         },
         {
             id: 3,
-            description: 'PIECES',
+            description: 'pieces',
         },
     ];
 

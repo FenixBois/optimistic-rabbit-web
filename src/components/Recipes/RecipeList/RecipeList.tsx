@@ -13,15 +13,18 @@ export const RecipeList = () => {
 
     if (error) return <div>failed to load</div>;
     if (!data) return <div>loading...</div>;
+    console.log(data);
     return (
         <RecipeListBox>
-            {data.map(recipe => (
-                <Link key={recipe.id} href={`/recipes/${recipe.id}`}>
-                    <a>
-                        <RecipeCard recipe={recipe} />
-                    </a>
-                </Link>
-            ))}
+            {data.length > 0
+                ? data.map(recipe => (
+                      <Link key={recipe.id} href={`/recipes/${recipe.id}`}>
+                          <a>
+                              <RecipeCard recipe={recipe} />
+                          </a>
+                      </Link>
+                  ))
+                : 'No data'}
         </RecipeListBox>
     );
 };
