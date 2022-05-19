@@ -5,6 +5,7 @@ export const ContainerStyled = styled('div', {
     boxSizing: 'border-box',
 
     textAlign: 'start',
+    textTransform: 'capitalize',
 
     borderRadius: 20,
     border: 'solid 4px $greyBorder',

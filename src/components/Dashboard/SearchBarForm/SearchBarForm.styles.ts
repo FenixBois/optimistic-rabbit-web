@@ -22,4 +22,6 @@ export const SelectContainerStyled = styled('form', {
     display: 'flex',
     marginTop: 10,
     gap: 10,
+
+    textTransform: 'capitalize',
 });

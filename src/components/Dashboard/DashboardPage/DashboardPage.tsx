@@ -6,7 +6,7 @@ import { SearchBarForm } from '../SearchBarForm';
 export const DashboardPage = () => {
     return (
         <>
-            <PageTitle>Cookbook</PageTitle>
+            <PageTitle>FandomNoms</PageTitle>
             <SearchBarForm css={{ marginBottom: 30 }} />
             <RecipeList />
         </>
