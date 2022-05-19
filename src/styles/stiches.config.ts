@@ -45,7 +45,7 @@ export const { styled, css, getCssText, config } = createStitches({
         },
         radii: {
             inputBorderRadius: '15px',
-            smallInputBorderRadius: '7px',
+            smallInputBorderRadius: '10px',
             largeBorderRadius: '20px',
         },
         fontWeights: {
