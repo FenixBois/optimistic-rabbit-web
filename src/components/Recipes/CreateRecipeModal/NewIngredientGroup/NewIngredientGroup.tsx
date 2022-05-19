@@ -1,12 +1,16 @@
-import { Ingredient, NewIngredientGroupStyled } from './NewIngredientGroup.styles';
+import { ErrorMessage, Ingredient, NewIngredientGroupStyled } from './NewIngredientGroup.styles';
 import { Icon, IconButton, Input, Select, SelectItem } from 'components/UI';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import type { Key } from 'react';
+import { Key } from 'react';
 import { CreateRecipeFormValues } from '../CreateRecipeForm/types';
 
 export function NewIngredientGroup() {
-    const { register, control } = useFormContext<CreateRecipeFormValues>();
+    const {
+        register,
+        control,
+        formState: { errors },
+    } = useFormContext<CreateRecipeFormValues>();
 
     const { fields, append, remove } = useFieldArray({
         name: 'ingredients',
@@ -39,6 +43,7 @@ export function NewIngredientGroup() {
                             name={`ingredients.${index}.name` as const}
                             type={'secondary'}
                             placeholder={'Tomatoes'}
+                            css={{ height: 32 }}
                         />
                         <Input
                             htmlType="number"
@@ -48,7 +53,7 @@ export function NewIngredientGroup() {
                             name={`ingredients.${index}.amount` as const}
                             type={'secondary'}
                             placeholder={'3'}
-                            css={{ width: 50 }}
+                            css={{ width: 50, height: 32 }}
                         />
                         <Select control={control} name={`ingredients.${index}.unit` as const} type={'secondary'}>
                             {dropDownUnits.map(unit => (
@@ -88,6 +93,15 @@ export function NewIngredientGroup() {
                         )}
                     </Ingredient>
                 ))}
+                {errors?.ingredients?.map(item => {
+                    return (
+                        <>
+                            <ErrorMessage> {item?.amount?.message}</ErrorMessage>
+                            <ErrorMessage> {item?.unit?.message}</ErrorMessage>
+                            <ErrorMessage> {item?.name?.message}</ErrorMessage>
+                        </>
+                    );
+                })}
             </NewIngredientGroupStyled>
         </>
     );

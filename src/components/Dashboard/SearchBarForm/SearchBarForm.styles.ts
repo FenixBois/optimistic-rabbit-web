@@ -18,7 +18,7 @@ export const SearchBar = styled('div', {
     width: '100%',
 });
 
-export const SelectContainerStyled = styled('div', {
+export const SelectContainerStyled = styled('form', {
     display: 'flex',
     marginTop: 10,
     gap: 10,

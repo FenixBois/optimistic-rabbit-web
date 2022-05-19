@@ -13,6 +13,8 @@ interface SelectTypeProps<TFormValues> extends VariantProps<typeof SelectInput> 
     name: Path<TFormValues>;
     control: Control<TFormValues>;
     defaultValue?: string;
+    onSelect?: () => void;
+    errorMessage?: string;
 }
 
 interface SelectItemTypeProps extends VariantProps<typeof SelectItemStyled> {
@@ -20,15 +22,34 @@ interface SelectItemTypeProps extends VariantProps<typeof SelectItemStyled> {
     children: ReactNode;
 }
 
-export function Select<TFormValues>({ control, children, defaultValue, type, name }: SelectTypeProps<TFormValues>) {
+export function Select<TFormValues>({
+    control,
+    children,
+    defaultValue,
+    onSelect,
+    errorMessage,
+    type,
+    name,
+}: SelectTypeProps<TFormValues>) {
     const SelectBodyAnimated = motion(SelectBody);
 
     return (
         <Controller
             control={control}
             name={name}
-            render={({ field: { onChange, value, name, ref } }) => (
-                <SelectInput type={type} name={name} onChange={onChange} ref={ref}>
+            render={({ field: { onChange, onBlur, name, ref } }) => (
+                <SelectInput
+                    error={!!errorMessage}
+                    type={type}
+                    defaultValue={defaultValue}
+                    onBlur={onBlur} // notify when input is touched
+                    name={name}
+                    onChange={e => {
+                        onChange(e);
+                        onSelect && onSelect();
+                    }}
+                    ref={ref}
+                >
                     {({ valueLabel, isExpanded }) => (
                         <>
                             <ListboxButtonStyled
@@ -48,11 +69,11 @@ export function Select<TFormValues>({ control, children, defaultValue, type, nam
                                     )
                                 }
                             >
-                                {value ? valueLabel : defaultValue}
+                                {valueLabel}
                             </ListboxButtonStyled>
                             <AnimatePresence exitBeforeEnter={false} initial={false} onExitComplete={() => null}>
                                 <SelectBodyAnimated
-                                    portal={true}
+                                    portal={false}
                                     initial="exit"
                                     type={type}
                                     animate={isExpanded ? 'enter' : 'exit'}

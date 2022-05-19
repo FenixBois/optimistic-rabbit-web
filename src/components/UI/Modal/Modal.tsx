@@ -18,7 +18,11 @@ export const ModalContent = forwardRef<HTMLDivElement, ModalProps>(
         return (
             <Portal>
                 <StyledOverlay />
-                <DialogContent ref={forwardedRef}>
+                <DialogContent
+                    onOpenAutoFocus={e => e.preventDefault()}
+                    onCloseAutoFocus={e => e.preventDefault()}
+                    ref={forwardedRef}
+                >
                     <Header>
                         {title && (
                             <Title>

@@ -1,18 +1,24 @@
 import { RecipeCard } from '../RecipeCard';
 import { RecipeListBox } from './RecipeList.styles';
-import { fetcher } from 'utils';
+import { fetcher, serialize } from 'utils';
 import useSWR from 'swr';
 import { Recipe } from 'types';
 import { api } from 'config';
 import { Icon, IconButton, Modal, ModalContent, ModalTrigger } from 'components/UI';
 import { RecipeDetail } from '../RecipeDetail';
 import { useAtom } from 'jotai';
-import { searchFilterAtom } from '../../Dashboard/atoms';
+import { searchFilterAtom, tagFiltersAtom } from '../../Dashboard/atoms';
 import Fuse from 'fuse.js';
+import { useState } from 'react';
 
 export const RecipeList = () => {
-    const { data: recipes, error, mutate } = useSWR<Recipe[]>(`${api}/recipes`, fetcher);
     const [searchFilter] = useAtom(searchFilterAtom);
+    const [tagsFilters] = useAtom(tagFiltersAtom);
+    const [modalShown, setModalShown] = useState(false);
+    const { data: recipes, error } = useSWR<Recipe[]>(['recipes', serialize(tagsFilters)], () =>
+        fetcher(`${api}/recipes`),
+    );
+
     const options = {
         keys: ['name', 'reference'],
     };
@@ -24,12 +30,12 @@ export const RecipeList = () => {
     if (!recipes) return <div>loading...</div>;
 
     const data = searchFilter ? result : recipes;
-
+    console.log(modalShown);
     return (
         <RecipeListBox>
             {data.length > 0
                 ? data.map(recipe => (
-                      <Modal key={recipe.id}>
+                      <Modal modal={modalShown} onOpenChange={setModalShown} key={recipe.id}>
                           <ModalContent
                               headerButtons={
                                   <IconButton>
@@ -38,7 +44,7 @@ export const RecipeList = () => {
                               }
                               title={recipe.name}
                           >
-                              <RecipeDetail recipe={recipe} />
+                              <RecipeDetail onClose={() => setModalShown(!modalShown)} recipe={recipe} />
                           </ModalContent>
                           <ModalTrigger>
                               <RecipeCard recipe={recipe} />

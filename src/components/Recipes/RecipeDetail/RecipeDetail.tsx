@@ -1,31 +1,50 @@
 import { Button, PillContainer, Stepper, Typography } from 'components/UI';
 import { DirectionsStyled, IngredientListStyled, IngredientsStyled, RecipeDetailStyled } from './RecipeDetail.styles';
-import { SyntheticEvent, useState } from 'react';
+import { useState } from 'react';
 import { Recipe } from 'types';
 import { api } from 'config';
 import useSWR from 'swr';
-import { fetcher } from 'utils';
+import { fetcher, serialize } from 'utils';
 import { useRouter } from 'next/router';
+import { useAtom } from 'jotai';
+import { tagFiltersAtom } from '../../Dashboard/atoms';
+import { toast } from 'react-hot-toast';
 
 interface RecipeDetailProps {
     recipe: Recipe;
+    onClose?: () => void;
 }
 
-export const RecipeDetail = ({ recipe }: RecipeDetailProps) => {
-    const { data: recipes, mutate } = useSWR<Recipe[]>(`${api}/recipes`, fetcher);
+export const RecipeDetail = ({ recipe, onClose }: RecipeDetailProps) => {
+    const [tagsFilters] = useAtom(tagFiltersAtom);
+
+    const { data: recipes, mutate } = useSWR<Recipe[]>(['recipes', serialize(tagsFilters)], () =>
+        fetcher(`${api}/recipes`),
+    );
 
     const router = useRouter();
 
-    const onDelete = async (e: SyntheticEvent, recipeId: Recipe['id']) => {
-        e.preventDefault();
+    const onDelete = async (recipeId: Recipe['id']) => {
+        const deleteRecipe = () => {
+            return fetch(`${api}/recipe/${recipeId}`, {
+                method: 'DELETE',
+            });
+        };
 
-        await fetch(`${api}/recipe/${recipeId}`, {
-            method: 'DELETE',
-        });
-        if (recipes) {
-            await mutate(recipes.filter(recipe => recipe.id !== recipeId));
-        }
-        await router.push('/', undefined, { scroll: false });
+        onClose ? onClose() : await router.push('/', undefined, { scroll: false });
+        await mutate();
+
+        await toast.promise(
+            deleteRecipe(),
+            {
+                loading: 'Loading',
+                success: 'Deleted',
+                error: 'Error when deleting',
+            },
+            {
+                position: 'top-right',
+            },
+        );
     };
     const [servings, setServings] = useState(1);
 
@@ -66,7 +85,7 @@ export const RecipeDetail = ({ recipe }: RecipeDetailProps) => {
                     {recipe.description}
                 </Typography>
             </DirectionsStyled>
-            <Button onClick={e => onDelete(e, recipe.id)} css={{ alignSelf: 'start' }} color={'danger'}>
+            <Button onClick={() => onDelete(recipe.id)} css={{ alignSelf: 'start' }} color={'danger'}>
                 Delete recipe
             </Button>
         </RecipeDetailStyled>

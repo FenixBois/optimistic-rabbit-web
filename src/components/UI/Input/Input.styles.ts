@@ -21,6 +21,9 @@ export const InputWrapper = styled('div', {
                 backgroundColor: '$primaryElementBackground',
                 color: '$primaryLowContrastText',
                 height: '$largeInput',
+                borderColor: '$primaryElementBackground',
+                borderStyle: 'solid',
+                borderWidth: 1,
                 px: 30,
                 py: 15,
 
@@ -33,10 +36,20 @@ export const InputWrapper = styled('div', {
             },
             secondary: {
                 backgroundColor: '$greyElementBackground',
+                borderColor: '$greyElementBackground',
+                borderStyle: 'solid',
+                borderWidth: 1,
                 borderRadius: 10,
 
                 px: 12,
                 py: 6,
+            },
+        },
+        error: {
+            true: {
+                borderColor: 'red',
+                borderWidth: 1,
+                borderStyle: 'solid',
             },
         },
     },
@@ -61,7 +74,6 @@ export const InputStyled = styled('input', {
 
     variants: {
         color: {
-            disabled: {},
             primary: {
                 fontSize: '$lg',
                 fontWeight: '$semibold',
@@ -72,6 +84,10 @@ export const InputStyled = styled('input', {
                 fontWeight: '$regular',
                 color: '$lowContrastText',
             },
+            disabled: {},
+        },
+        error: {
+            true: {},
         },
     },
 
@@ -92,4 +108,16 @@ export const LabelWrapper = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
+});
+
+export const ErrorMessage = styled('p', {
+    fontSize: 10,
+    color: 'red',
+    marginTop: 4,
+});
+
+export const ErrorBox = styled('div', {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
 });

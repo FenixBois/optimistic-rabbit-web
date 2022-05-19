@@ -20,5 +20,5 @@ export const TagsWrapper = styled('div', {
 export const Form = styled('form', {
     display: 'flex',
     flexDirection: 'column',
-    gap: 20,
+    gap: 15,
 });

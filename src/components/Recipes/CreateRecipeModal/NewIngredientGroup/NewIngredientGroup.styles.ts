@@ -10,3 +10,10 @@ export const Ingredient = styled('span', {
 
     gap: 5,
 });
+
+export const ErrorMessage = styled('span', {
+    color: 'red',
+    fontSize: 12,
+    marginLeft: 2,
+    marginTop: 3,
+});

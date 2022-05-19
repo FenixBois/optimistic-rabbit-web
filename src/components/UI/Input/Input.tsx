@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes, ReactNode } from 'react';
-import { InputStyled, InputWrapper, LabelWrapper, Prefix, Suffix } from './Input.styles';
+import { ErrorBox, ErrorMessage, InputStyled, InputWrapper, LabelWrapper, Prefix, Suffix } from './Input.styles';
 
 import type { CSS, VariantProps } from '@stitches/react';
 import type { Path, RegisterOptions, UseFormRegister } from 'react-hook-form';
@@ -19,8 +19,10 @@ export interface InputProps<TFormItem> extends VariantProps<typeof InputWrapper>
     id?: string;
     label?: string;
     rows?: number;
+    error?: boolean;
     name?: Path<TFormItem>;
     rules?: RegisterOptions;
+    errorMessage?: string;
 }
 
 export function Input<TFormItem>({
@@ -38,6 +40,8 @@ export function Input<TFormItem>({
     as,
     rows,
     name,
+    errorMessage,
+    error = false,
     ...props
 }: InputProps<TFormItem>) {
     return (
@@ -47,22 +51,25 @@ export function Input<TFormItem>({
                     {label}
                 </Typography>
             )}
-            <InputWrapper type={disabled ? 'disabled' : type}>
-                {prefix ? <Prefix>{prefix}</Prefix> : null}
-                <InputStyled
-                    css={css}
-                    color={type}
-                    id={id}
-                    rows={rows}
-                    disabled={disabled}
-                    placeholder={placeholder}
-                    as={as}
-                    {...(register && name && register(name, rules))}
-                    {...props}
-                    type={htmlType}
-                />
-                {suffix ? <Suffix>{suffix}</Suffix> : null}
-            </InputWrapper>
+            <ErrorBox>
+                <InputWrapper css={css} error={!!errorMessage} type={disabled ? 'disabled' : type}>
+                    {prefix ? <Prefix>{prefix}</Prefix> : null}
+
+                    <InputStyled
+                        color={type}
+                        id={id}
+                        rows={rows}
+                        disabled={disabled}
+                        placeholder={placeholder}
+                        as={as}
+                        {...(register && name && register(name, rules))}
+                        {...props}
+                        type={htmlType}
+                    />
+                    {suffix ? <Suffix>{suffix}</Suffix> : null}
+                </InputWrapper>
+                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+            </ErrorBox>
         </LabelWrapper>
     );
 }

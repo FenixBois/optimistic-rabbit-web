@@ -1,33 +1,63 @@
 import { FormProvider, useForm } from 'react-hook-form';
+import useSWR from 'swr';
+import * as z from 'zod';
 import { Button, Input, Select, SelectItem, Typography } from 'components/UI';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import uniqid from 'uniqid';
 
-import type { CreateRecipeFormValues } from './types';
 import { TagsData } from './types';
 import { Form, InfoBox, TagsBox, TagsWrapper } from './CreateRecipeForm.styles';
 import { NewIngredientGroup } from '../NewIngredientGroup';
-import { fetcher } from 'utils';
+import { fetcher, serialize } from 'utils';
 import { api } from 'config';
-import useSWR from 'swr';
-import * as z from 'zod';
+import type { Recipe } from 'types';
+import { useAtom } from 'jotai';
+import { tagFiltersAtom } from '../../../Dashboard/atoms';
+import { toast } from 'react-hot-toast';
 
-export function CreateRecipeForm() {
-    const { data: recipes, mutate } = useSWR(`${api}/recipes`, fetcher);
+interface CreateRecipeFormType {
+    onClose: () => void;
+}
+
+export function CreateRecipeForm({ onClose }: CreateRecipeFormType) {
+    const [tagsFilters] = useAtom(tagFiltersAtom);
+
+    const { data: recipes, mutate } = useSWR<Recipe[]>(['recipes', serialize(tagsFilters)], () =>
+        fetcher(`${api}/recipes`),
+    );
+
+    type Form = z.infer<typeof schema>;
+
     const schema = z.object({
-        name: z.string().min(1, { message: 'Required' }),
+        name: z.string().min(1, { message: 'Title is required' }),
+        time: z.number().min(1, { message: 'Time is required' }),
+        reference: z.string().min(1, { message: 'Reference is required' }),
+        description: z.string().min(1, { message: 'Description is required' }),
+        ingredients: z.array(
+            z.object({
+                name: z.string().min(1, { message: 'Title is required' }),
+                amount: z.number(),
+                unit: z.enum(['ml', 'g', 'pieces']),
+            }),
+        ),
+        media: z.enum(['film', 'book', 'game']),
+        taste: z.enum(['sweet', 'spicy', 'bitter', 'sour', 'salty']),
+        difficulty: z.enum(['easy', 'medium', 'hard']),
     });
 
-    const methods = useForm<CreateRecipeFormValues>({
+    const methods = useForm<Form>({
         resolver: zodResolver(schema),
         mode: 'onChange',
         defaultValues: {
+            difficulty: 'easy',
+            media: 'book',
+            taste: 'sweet',
             ingredients: [
                 {
-                    unit: undefined,
+                    unit: 'g',
                     name: undefined,
-                    amount: 'g',
+                    amount: 1,
                 },
             ],
         },
@@ -39,34 +69,54 @@ export function CreateRecipeForm() {
         formState: { errors },
     } = methods;
 
-    const onSubmit = async (recipe: CreateRecipeFormValues) => {
+    const onSubmit = async (recipe: Form) => {
+        onClose();
+
         const newRecipe = {
             ...recipe,
-            media: recipe.media.toUpperCase(),
-            difficulty: recipe.difficulty.toUpperCase(),
-            taste: recipe.taste.toUpperCase(),
             servings: 2,
             vegetarian: false,
         };
+        const createNew = () => {
+            return fetch(`${api}/recipe`, {
+                headers: { 'Content-Type': 'application/json' },
+                method: 'POST',
+                body: JSON.stringify(newRecipe),
+            });
+        };
 
-        const createdUser = await fetch(`${api}/recipe`, {
-            headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
-            body: JSON.stringify(newRecipe),
-        });
+        await toast.promise(
+            createNew(),
+            {
+                loading: 'Loading',
+                success: 'Got the data',
+                error: 'Error when fetching',
+            },
+            {
+                position: 'top-right',
+            },
+        );
 
-        await mutate([...recipes, createdUser]);
+        await mutate();
     };
 
     return (
         <FormProvider {...methods}>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <InfoBox>
-                    <Input placeholder={'Amazing chicken'} register={register} name={'name'} label={'Recipe title'} />
+                    <Input
+                        placeholder={'Amazing chicken'}
+                        errorMessage={errors.name?.message}
+                        register={register}
+                        name={'name'}
+                        label={'Recipe title'}
+                    />
+
                     <Input
                         placeholder={'45'}
                         register={register}
                         name={'time'}
+                        errorMessage={errors.time?.message}
                         htmlType={'number'}
                         rules={{ valueAsNumber: true }}
                         label={'Time to prepare (in minutes)'}
@@ -75,6 +125,7 @@ export function CreateRecipeForm() {
                         placeholder={'Legend of Zelda'}
                         register={register}
                         name={'reference'}
+                        errorMessage={errors.reference?.message}
                         label={'Name of the book / movie / game '}
                     />
                 </InfoBox>
@@ -106,10 +157,11 @@ export function CreateRecipeForm() {
                     as={'textarea'}
                     register={register}
                     rows={4}
+                    errorMessage={errors.description?.message}
                     name={'description'}
                     label={'Preparation instructions'}
                 />
-                <Button disabled={!!errors} css={{ alignSelf: 'start' }} size={'large'}>
+                <Button type={'submit'} css={{ alignSelf: 'start' }} size={'large'}>
                     Create recipe
                 </Button>
             </Form>

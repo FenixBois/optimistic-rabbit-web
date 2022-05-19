@@ -25,19 +25,19 @@ export interface IngredientValue {
 export const TagsData = [
     {
         id: 1,
-        defaultValue: 'Difficulty',
+        defaultValue: 'easy',
         options: Object.entries(Difficulty),
         name: TagsNames.Difficulty,
     },
     {
         id: 2,
-        defaultValue: 'Taste',
+        defaultValue: 'sweet',
         options: Object.entries(Taste),
         name: TagsNames.Taste,
     },
     {
         id: 3,
-        defaultValue: 'Media',
+        defaultValue: 'movie',
         options: Object.entries(Media),
         name: TagsNames.Media,
     },

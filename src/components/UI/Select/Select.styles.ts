@@ -55,6 +55,13 @@ export const SelectInput = styled(ListboxInput, {
                 },
             },
         },
+        error: {
+            true: {
+                borderColor: 'red',
+                borderWidth: 1,
+                borderStyle: 'solid',
+            },
+        },
     },
     defaultVariants: {
         type: 'primary',
@@ -66,12 +73,12 @@ export const SelectBody = styled(ListboxPopover, {
     borderRadius: '$inputBorderRadius',
     minWidth: 'fit-content',
     boxShadow: '0px 0px 15px 0px #00000040',
-
+    zIndex: 10,
+    position: 'relative',
 
     ':focus-visible': {
         outline: 'none',
     },
-
 
     variants: {
         type: {
