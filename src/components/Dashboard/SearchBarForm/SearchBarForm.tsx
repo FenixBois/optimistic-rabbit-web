@@ -25,8 +25,8 @@ export function SearchBarForm({ css }: SearchBarFormProps) {
                     type={'primary'}
                     placeholder={'Search for a recipe!'}
                 />
+                <CreateRecipeModal />
             </SearchInputBox>
-            <CreateRecipeModal />
             <SelectContainerStyled>
                 {DROPDOWN_DATA.map((dropdown, index) => (
                     <Select

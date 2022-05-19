@@ -32,7 +32,11 @@ export const RecipeList = () => {
                       <Modal key={recipe.id}>
                           <ModalContent
                               headerButtons={
-                                  <IconButton>
+                                  <IconButton
+                                      onClick={() =>
+                                          navigator.clipboard.writeText(`${window.location}recipes/${recipe.id}`)
+                                      }
+                                  >
                                       <Icon type={Icon.Types.COPY} />
                                   </IconButton>
                               }
